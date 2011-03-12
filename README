@@ -1,5 +1,7 @@
 JSLibrary is a Java library I created to help with A Level Computing. It takes common tasks, such as creating JTables, and simplifies them immensely. I can't take all the credit, though; most of the code is based on the Park Library created by my computing teacher.
 
+There are some issues with the current release of some of the classes. See the 'Issues' tab above for more info.
+
 INSTALLATION
 
 Installation is simple. Just download the JAR file and copy it into your Java project folder.
