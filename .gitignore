@@ -110,3 +110,5 @@ bin/overview.html
 bin/js/JSFrame$1.class
 
 bin/js/JSDialog$1.class
+
+bin/js/incomplete/JSLog.class
