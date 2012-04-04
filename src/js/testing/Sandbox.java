@@ -3,7 +3,6 @@ package js.testing;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -30,8 +29,6 @@ import js.JSStepper;
 import js.uikit.UITableView;
 import js.uikit.UITableViewCell;
 import js.uikit.UIToolbar;
-
-import org.pushingpixels.trident.Timeline;
 
 public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 		ItemListener, ComponentListener {
@@ -93,35 +90,6 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 		add(badgeButton);
 		
 		setVisible(true);
-	}
-	
-	public void makeItSlide() {
-		Timeline tableSlider = new Timeline(table);
-		tableSlider.addPropertyToInterpolate("location", new Point(0, 44), new Point(-300, 44));
-		tableSlider.setDuration(250);
-		
-		Timeline panelSlider = new Timeline(anotherPanel);
-		panelSlider.addPropertyToInterpolate("location", new Point(300, 44), new Point(0, 44));
-		panelSlider.setDuration(250);
-		
-		if (b) {
-			tableSlider.play();
-			panelSlider.play();
-			toolbar.setTitle("forename");
-			toolbar.setRightButton("");
-			toolbar.setLeftButton("Back");
-			toolbar.getLeftButton().addActionListener(this);
-		}
-		else {
-			tableSlider.playReverse();
-			panelSlider.playReverse();
-			toolbar.setTitle("Customer");
-			toolbar.setRightButton("Add new");
-			toolbar.setLeftButton("");
-			toolbar.getRightButton().addActionListener(this);
-		}
-		
-		b = !b;
 	}
 	
 	public boolean checkForUpdates() {
@@ -192,8 +160,6 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 	}	
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == toolbar.getLeftButton())
-			makeItSlide();
 	}
 
 	public void itemStateChanged(ItemEvent e) {
@@ -202,8 +168,6 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 
 	public void mouseClicked(MouseEvent e) {
 		UITableViewCell cell = (UITableViewCell) e.getSource();
-		if (cell.getTitle().equals("forename"));
-			makeItSlide();
 	}
 
 	public void mouseEntered(MouseEvent e) {

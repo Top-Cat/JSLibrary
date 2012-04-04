@@ -17,6 +17,10 @@ import javax.swing.JLabel;
  * 
  * @author Josh
  * @version 1.0
+ * 
+ * @deprecated <code>JSConfirmDialogWithCheckbox</code> has been deprecated because it's much easier and looks much nicer if you use JOptionPane.
+ * 				It turns out that the <code>message</code> parameter of <code>JOptionPane.showMessageDialog</code> can take an array of objects,
+ * 				which you can use to pass a String as the message and a JCheckBox together.
  */
 public class JSConfirmDialogWithCheckbox extends JDialog implements
 		ActionListener {
