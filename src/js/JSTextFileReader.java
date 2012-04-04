@@ -33,7 +33,6 @@ public class JSTextFileReader {
 	 * @param filename the location of the text file on disk that should be read
 	 */
 	public JSTextFileReader(String filename) {
-		JSUtil.checkForJSLibraryUpdate();
 		this.filename = filename;
 		this.currentLine = 0;
 		this.totalLines = 0;

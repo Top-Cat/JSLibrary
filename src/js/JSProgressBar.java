@@ -47,7 +47,6 @@ public class JSProgressBar extends JComponent {
 	public JSProgressBar(int max, int value) {
 		this.maxValue = max;
 		this.value = value;
-		JSUtil.checkForJSLibraryUpdate();
 	}
 	
 	/**

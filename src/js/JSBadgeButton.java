@@ -44,7 +44,6 @@ public class JSBadgeButton extends JButton {
 	public JSBadgeButton(int value) {
 		setNumber(value);
 		badge = getImage();
-		JSUtil.checkForJSLibraryUpdate();
 	}
 	
 	/**

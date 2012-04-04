@@ -112,7 +112,6 @@ public class JSTable extends JPanel implements MouseListener {
     * @category constructor
     */
    public JSTable(String title, String[] headings, int rows) {
-	   JSUtil.checkForJSLibraryUpdate();
 	   setSize(500,500);
       setLayout(new BorderLayout());
       

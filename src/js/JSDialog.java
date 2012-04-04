@@ -13,7 +13,6 @@ public class JSDialog extends JDialog {
 	private static final long serialVersionUID = 6371265511529986868L;
 
 	public JSDialog() {
-		JSUtil.checkForJSLibraryUpdate();
 	}
 	
 	/**

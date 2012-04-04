@@ -126,7 +126,6 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 	 * @param yearsAhead an integer number of years to display in this JSDateEntry in the future from the current year.
 	 */
 	public JSDateEntry(int viewType, Calendar initialDate, int yearsBehind, int yearsAhead) {
-		JSUtil.checkForJSLibraryUpdate();
 		
 		this.viewType = viewType;
 		this.date = initialDate;

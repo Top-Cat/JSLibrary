@@ -13,7 +13,6 @@ public class JSFrame extends JFrame {
 	private static final long serialVersionUID = 5850064278763136458L;
 
 	public JSFrame() {
-		JSUtil.checkForJSLibraryUpdate();
 	}
 	
 	/**

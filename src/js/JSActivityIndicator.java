@@ -14,7 +14,7 @@ public class JSActivityIndicator extends JComponent {
 	private JLabel label = new JLabel();
 	
 	public JSActivityIndicator() {
-		JSUtil.checkForJSLibraryUpdate();
+		
 	}
 	
 	public void startAnimating() {

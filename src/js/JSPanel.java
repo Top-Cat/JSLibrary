@@ -14,7 +14,6 @@ public class JSPanel extends JPanel {
 	Color start, end;
 	
 	public JSPanel() {
-		JSUtil.checkForJSLibraryUpdate();
 	}
 	
 	public void setGradientBackground(Color startColor, Color endColor) {

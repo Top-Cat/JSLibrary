@@ -44,7 +44,6 @@ public class JSProgressWindow extends JDialog {
 	 * @param title the title for the dialog
 	 */
 	public JSProgressWindow(int maximum, String message, String title) {
-		JSUtil.checkForJSLibraryUpdate();
 		setTitle(title);
 		setSize(450, 150);
 		setResizable(false);

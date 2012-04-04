@@ -42,7 +42,6 @@ public class JSRoundButton extends JButton implements MouseListener {
 	 * @param icon the icon to show on the button
 	 */
 	public JSRoundButton(String label, int icon) {
-		JSUtil.checkForJSLibraryUpdate();
 		this.setText(label);
 		this.setVerticalTextPosition(SwingConstants.BOTTOM);
 		this.setHorizontalTextPosition(SwingConstants.CENTER);

@@ -95,7 +95,6 @@ public class JSPrintPreview extends JDialog implements Printable, ActionListener
    private final int ALIGN_RIGHT = 1; */
    
    public JSPrintPreview() {
-	   JSUtil.checkForJSLibraryUpdate();
 	   setModal(true);
       setLayout(new BorderLayout());
       this.panel.addMouseListener(this.panel);

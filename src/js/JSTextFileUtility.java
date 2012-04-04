@@ -30,7 +30,6 @@ public class JSTextFileUtility {
 	 * @param filename the path to the file to use for this <code>JSTextFileUtility</code>.
 	 */
 	public JSTextFileUtility(String filename) {
-		JSUtil.checkForJSLibraryUpdate();
 		this.filename = filename;
 	}
 	

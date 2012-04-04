@@ -71,7 +71,6 @@ public class JSStepper extends JComponent implements ActionListener, KeyListener
 	 * @param initialValue the initial value for this JSStepper
 	 */
 	public JSStepper(int min, int max, int increment, int initialValue) {
-		JSUtil.checkForJSLibraryUpdate();
 		this.min = min;
 		this.max = max;
 		this.increment = increment;

@@ -31,7 +31,6 @@ public class JSGridPanel extends JPanel {
 	 * @param columns the number of columns the grid should have.
 	 */
 	public JSGridPanel(int rows, int columns) {
-		JSUtil.checkForJSLibraryUpdate();
 		grid = new GridLayout(rows, columns);
 		this.setLayout(grid);
 		panelHolder = new JPanel[rows][columns];	// Add enough memory to the array to fill all cells of the grid.

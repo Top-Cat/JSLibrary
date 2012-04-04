@@ -75,7 +75,6 @@ public class JSTableDialog extends JSDialog implements ActionListener, KeyListen
 	 * @param rows the initial number of rows for the table.
 	 */
 	public JSTableDialog(String title, String[] headings, String[] buttonLabels, int rows) {
-		JSUtil.checkForJSLibraryUpdate();
 		table = new JSTable(title, headings, rows);
 		table.addMouseListener(this);
 		table.setEditable(false);

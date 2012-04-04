@@ -53,7 +53,6 @@ public class JSConfirmDialogWithCheckbox extends JDialog implements
 	public JSConfirmDialogWithCheckbox(String message, String title,
 			String checkboxLabel, String iconFilePath) {
 		init(message, title, checkboxLabel, iconFilePath);
-		JSUtil.checkForJSLibraryUpdate();
 	}
 
 	private void init(String message, String title, String checkboxLabel,

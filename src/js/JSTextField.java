@@ -47,7 +47,6 @@ public class JSTextField extends JTextField implements KeyListener, FocusListene
 	 */
 	public JSTextField() {
 		super();
-		JSUtil.checkForJSLibraryUpdate();
 		this.addKeyListener(this);
 		this.addFocusListener(this);
 		init();
