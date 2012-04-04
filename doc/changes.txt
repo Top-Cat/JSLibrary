@@ -1,0 +1,5 @@
+ JSStepper 1.1.1
+  Fix: Stopped a period being printed to the console when clicking away from the text field
+  
+ JSActivityIndicator 1.0
+  New: New class allowing a spinner to be displayed when invisible processing is occurring

@@ -1,0 +1,224 @@
+JSLibrary Changelog
+*******************
+----------------------------
+Version Unknown - 2011/11/18
+----------------------------
+ JSTable 1.0.1
+  New: Added setRowCount()
+  New: Added addRow()
+
+ JSTextField 1.0
+  Doc: All methods fully documented
+  Chg: Moved from incomplete to js
+  
+ JSProgressWindow 1.0
+  Doc: All methods fully documented
+  Rmv: Removed display()
+  Rmv: Removed close()
+  Chg: Moved from incomplete to js
+  
+ JSRoundButton 1.0
+  Doc: All methods fully documented
+  Chg: Moved from incomplete to js
+  
+ Popover 0.1
+  Chg: Renamed from JSPopover to Popover
+  Rmv: Removed from JSLibrary
+  
+----------------------------
+Version Unknown - 2011/11/20
+----------------------------
+ JSTable 1.1
+  New: Mouse clicks on the table itself get sent as a MouseEvent with the table as a source
+
+----------------------------  
+Version Unknown - 2011/11/23
+----------------------------
+ JSProgressBar 1.0
+  New: New class providing an alternative to JProgressBar,based on the design of iOS progress bars
+  
+ JSPanel 1.0
+  New: New class extending JPanel to allow gradients for the panel background
+  
+----------------------------
+Version Unknown - 2011/11/24
+----------------------------
+ JSProgressBar 1.0.1
+  New: Added increment()
+  
+----------------------------
+Version Unknown - 2011/12/03
+----------------------------
+ JSGridPanel 1.0.1
+  New: Added moreEmptyCells()
+  
+ JSDateEntry 1.0
+  New: New class providing a variety of ways to enter a date, using dropdowns, text fields or a popup calendar.
+  
+ JSTable 1.1.1
+  New: Added deleteRow()
+  
+--------------------------
+Version 1.2.1 - 2011/12/06
+--------------------------
+ JSTable 1.1.2
+  New: Added centerAllColumns()
+  New: Added JSTable(String[] headings, int rows)
+  New: Added removeHeader()
+  New: Added setSelectedRow()
+  
+ JSStepper 1.0
+  New: New class providing an interface to a value which can be incremented and decremented
+  
+--------------------------
+Version 1.2.2 - 2012/01/11
+--------------------------
+ JSTextFileReader 1.0
+  New: New class which provides a more convenient way to read plain text files from disk
+  
+--------------------------
+Version 1.2.3 - 2012/01/17
+--------------------------
+ JSTable 1.1.3
+  New: Added getRowHeight() 
+  Doc: Column heading suffixes are now adequately documented
+  Rmv: makeDialog() and makeDialog(JPanel northPanel, JPanel southPanel) are now both deprecated in favour of JSTableDialog
+
+ JSTableDialog 1.0
+  New: New class which allows a JSTable to be used as a dialog, including customisable buttons below the table
+  
+--------------------------
+Version 1.2.4 - 2012/01/18
+--------------------------
+ JSTable 1.1.4
+  New: Added getFontSize()
+  
+ JSTableDialog 1.0.1
+  New: Added setTableFont(), which performs table.setTableFont() and fires a resize if necessary
+  Chg: Dynamic resizing now occurs during setVisible() to account for any changes to fonts etc.
+  
+--------------------------
+Version 1.2.5 - 2012/01/19
+--------------------------
+ JSTableDialog 1.0.2
+  Fix: Fixed an issue which caused the dialog to be too small when using certain fonts
+
+--------------------------
+Version 1.2.6 - 2012/01/22
+--------------------------
+ JSStepper 1.1
+  New: JSStepper now responds to the arrow keys, and values can be typed directly into the text field
+  New: Added setTypingAllowed()
+  Fix: Fixed an issue where using setValue() with a value smaller than the minimum or larger than the maximum would cause
+       an incorrect value to be displayed
+       
+ JSTable 1.1.5
+  Doc: Added a usage example to the class overview documentation
+  
+--------------------------
+Version 1.2.7 - 2012/01/24
+--------------------------
+ JSFrame 1.0.1
+  Fix: Fixed an issue which would cause an ArithmeticException when calling animateToSize() with no size change
+  
+ JSTextFileReader 1.0.1
+  New: Added hasMoreLines()
+  
+ JSTable 1.1.6
+  New: Added setRowColor()
+  New: Added getTableForeground()
+
+--------------------------
+Version 1.2.8 - 2012/01/26
+--------------------------
+ JSTable 1.1.7
+  Fix: Fixed an issue which could cause centerColumn() or centerAllColumns() to have no effect
+  
+--------------------------
+Version 1.2.9 - 2012/01/27
+--------------------------
+ JSTable 1.2
+  New: Added setColumnAlignment(int)
+  New: Added setColumnAlignment(int, int)
+  New: Added setHeaderAlignment(int)
+  Fix: Fixed an issue which could cause a JSTable not to show up
+  Rmv: centerAllColumns() has been deprecated, and is scheduled to be removed in JSTable 1.2.3
+  Rmv: centerColumn(int) has been deprecated, and is scheduled to be removed in JSTable 1.2.3
+  Rmv: centerHeaders() has been deprecated, and is scheduled to be removed in JSTable 1.2.3
+  
+---------------------------
+Version 1.2.10 - 2012/01/28
+---------------------------
+ JSTable 1.2.1
+  New: Added getTableBackground()
+  Fix: Fixed an issue where setting the alignment of the same column twice had no effect or affected other columns
+  Fix: Fixed an issue where boolean columns rendered as text rather than a checkbox
+  
+---------------------------
+Version 1.2.11 - 2012/02/02
+---------------------------
+ JSStepper 1.1.1
+  Fix: Stopped a period being printed to the console when clicking away from the text field
+  
+ JSActivityIndicator 1.0
+  New: New class allowing a spinner to be displayed when invisible processing is occurring
+  
+--------------------------
+Version 1.3.0 - 2012/02/24
+--------------------------
+ The JSLibrary can now check for updates to itself. All JSLibrary classes run an update check when they are instantiated, and information about a new version is printed in the console.
+  
+ JSTableDialog 1.0.3
+  New: Added setButtonBackground(Color)
+  New: Added setButtonFont(Font)
+  New: Added setButtonForeground(Color)
+  
+ JSTextFileUtility 1.0
+  New: JSTextFileUtility is a new class which provides simple read/write access to a plain text file stored on disk.
+  
+ JSUtil 1.0.1
+  New: Added checkForJSLibraryUpdate()
+  New: Added increaseArrayLength(T[], int)
+  
+ JSTextFileReader 1.0.1
+  Rmv: JSTextFileReader has been deprecated in favour of the more fully-featured JSTextFileUtility, which supports writing to a file as well as reading from it. This class will be removed completely in JSLibrary 1.3.3.
+  
+--------------------------
+Version 1.3.1 - 2012/02/26
+--------------------------
+ JSTable 1.2.2
+  Chg: Errors when assigning values to columns with mismatching classes are now handled in a much friendlier way by using the console instead of JOptionPane. More information is also included in the error message.
+  
+--------------------------
+Version 1.4.0 - 2012/03/14
+--------------------------
+ New package added: uikit
+ 
+ UITableView 1.0
+  New: New class which mimics table views from iOS
+  
+ UITableViewCell 1.0
+  New: New class which represents a single row in a UITableView
+  
+ UIToolbar 1.0
+  New: New class which mimics toolbars from iOS apps such as Mail and Notes
+  
+--------------------------
+Version 1.4.1 - 2012/03/14
+--------------------------
+ UITableView 1.0.1
+  New: Added getRowCount()
+  
+ UITableViewCell 1.0.1
+  New: Cells can now be edited by double-clicking, or by some other method using enterEditMode()
+  New: Added enterEditMode()
+  New: Added exitEditMode()
+  New: Added setSelectable(boolean)
+  New: Added isSelectable()
+  New: Added deselect()
+  
+ UIToolbar 1.0.1
+  New: The title can now be edited by double-clicking, or by some other method using enterEditMode()
+  New: Added enterEditMode()
+  New: Added exitEditMode()
+  New: Added setTitleEditable(boolean)

@@ -36,10 +36,22 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+/**
+ * JSPrintPreview provides a 'print preview' interface for printing a document using Java.
+ * A {@link JDialog} is created with a simulation of an A4 piece of paper and some tools for zooming, printing and showing a grid.
+ * The instance of <code>JSPrintPreview</code> uses methods similar to that of a {@link Graphics2D} object,
+ * such as <code>drawString</code> and <code>drawImage</code>.
+ * 
+ * @author Josh Sunshine
+ * 
+ * @version 1.1
+ *
+ */
+
 public class JSPrintPreview extends JDialog implements Printable, ActionListener {
    
    private static final long serialVersionUID = 1L;
-   private static String version = "JSPrintPreview Version 1.1";
+   private static String version = "JSPrintPreview Version 1.1.1";
    private PaperPanel panel = new PaperPanel();
    private JScrollPane scrollPane = new JScrollPane(this.panel);
    private JPanel buttonBar = new JPanel(new GridLayout(1, 5));
@@ -49,16 +61,16 @@ public class JSPrintPreview extends JDialog implements Printable, ActionListener
    private JButton gridButton;
    private JButton zoomInButton;
    private JButton zoomOutButton;
-   public final int PORTRAIT_ORIENTATION = 1;
-   public final int LANDSCAPE_ORIENTATION = 0;
+   public static final int PORTRAIT_ORIENTATION = 1;
+   public static final int LANDSCAPE_ORIENTATION = 0;
    private String currencySymbol = "£";
    private Point mousePos = new Point();
    private double zoomLevel = 100.0;
-   private Vector elements = new Vector();
+   private Vector<Object> elements = new Vector<Object>();
    private int orientation = PORTRAIT_ORIENTATION;
    private Font currentFont = new Font("Arial", Font.PLAIN, 12);
    private boolean showGrid = false;
-   private final int DRAW_LINE = 0;
+/*   private final int DRAW_LINE = 0;
    private final int SET_COLOR = 1;
    private final int SET_COLOR_RGB = 2;
    private final int DRAW_STRING = 3;
@@ -80,10 +92,11 @@ public class JSPrintPreview extends JDialog implements Printable, ActionListener
    private final int FILL_ARC = 19;
    private final int SET_COLOR_ALPHA = 20;
    private final int ALIGN_LEFT = 0;
-   private final int ALIGN_RIGHT = 1;
+   private final int ALIGN_RIGHT = 1; */
    
    public JSPrintPreview() {
-      setModal(true);
+	   JSUtil.checkForJSLibraryUpdate();
+	   setModal(true);
       setLayout(new BorderLayout());
       this.panel.addMouseListener(this.panel);
       this.panel.addMouseMotionListener(this.panel);
@@ -119,22 +132,37 @@ public class JSPrintPreview extends JDialog implements Printable, ActionListener
       setDefaultCloseOperation(2);
    }
    
+   /**
+    * Causes the preview dialog to appear on-screen. This method should be called last,
+    * after adding all components.
+    */
    public void display() {
       setVisible(true);
    }
    
-   public void setOrientation(int newOrientation) {
-      if (newOrientation == PORTRAIT_ORIENTATION)
-          orientation = PORTRAIT_ORIENTATION;
+   /**
+    * Sets whether the simulated paper should be in portrait or landscape mode.
+    * 
+    * @param orientation the new orientation for the simulated paper. Either
+    * <code>PORTRAIT_ORIENTATION</code> or <code>LANDSCAPE_ORIENTATION</code>.
+    */
+   public void setOrientation(int orientation) {
+      if (orientation == PORTRAIT_ORIENTATION)
+          this.orientation = PORTRAIT_ORIENTATION;
       else
-         orientation = LANDSCAPE_ORIENTATION;
+         this.orientation = LANDSCAPE_ORIENTATION;
    }
    
+   /**
+    * Sets whether or not the grid should be shown as soon as the preview is displayed.
+    * 
+    * @param show the state of the grid. <code>true</code> will show the grid and <code>false</code> will hide the grid.
+    */
    public void setGrid(Boolean show) {
       if (show)
-         showGrid = true;
+         this.showGrid = true;
       else
-         showGrid = false;
+         this.showGrid = false;
    }
    
    public void actionPerformed(ActionEvent e) {
@@ -190,33 +218,83 @@ public class JSPrintPreview extends JDialog implements Printable, ActionListener
        return 0;
    }
    
+   /**
+    * Sets the symbol to be used when drawing currencies.
+    * 
+    * @param currencySymbol the character, or characters, to be drawn before currencies.
+    */
    public void setCurrencySymbol(String currencySymbol)
    {
      this.currencySymbol = currencySymbol.toString();
    }
    
+   /**
+    * Renders a string on the paper.
+    * 
+    * @param string the string to be rendered.
+    * @param x the x-coordinate, measured in pixels from the top-left corner of the page, of the string's destination.
+    * @param y the y-coordinate, measured in pixels from the top-left corner of the page, of the string's destination.
+    */
    public void drawString(String string, int x, int y)
    {
      drawString(string, x, y, 0);
    }
 
+   /**
+    * Converts the passed object to a string and renders it on the paper.
+    * 
+    * @param object the object to be rendered.
+    * @param x the x-coordinate, measured in pixels from the top-left corner of the page, of the object's destination.
+    * @param y the y-coordinate, measured in pixels from the top-left corner of the page, of the object's destination.
+    */
    public void drawString(Object object, int x, int y)
    {
      if (object != null)
        drawString(object.toString(), x, y, 0);
    }
 
+   /**
+    * Converts the passed object to a string and renders it on the paper with the specified text alignment.
+    * 
+    * @param object the object to be rendered.
+    * @param x the x-coordinate, measured in pixels from the top-left corner of the page, of the object's destination.
+    * @param y the y-coordinate, measured in pixels from the top-left corner of the page, of the object's destination.
+    * @param alignment the horizontal alignment of the rendered text. Pass <code>0</code> for left alignment or <code>1</code>
+    * for right alignment.
+    */
    public void drawString(Object object, int x, int y, int alignment)
    {
      if (object != null)
        drawString(object.toString(), x, y, alignment);
    }
 
+   /**
+    * Rounds the passed number to two decimal places, appends the chosen <code>currencySymbol</code> to the beginning,
+    * and renders the result on the paper with a right alignment.
+    * 
+    * @param value the value to be rendered.
+    * @param x the x-coordinate, measured in pixels from the top-left corner of the page, of the number's destination.
+    * @param y the y-coordinate, measured in pixels from the top-left corner of the page, of the number's destination.
+    * 
+    * @see #setCurrencySymbol(String currencySymbol)
+    */
    public void drawCurrency(double value, int x, int y)
    {
      drawString(this.currencySymbol + round(value,2), x, y, 1);
    }
 
+   /**
+    * Rounds the passed number to two decimal places, appends the chosen <code>currencySymbol</code> to the beginning,
+    * and renders the result on the paper with the chosen alignment.
+    * 
+    * @param value the value to be rendered.
+    * @param x the x-coordinate, measured in pixels from the top-left corner of the page, of the number's destination.
+    * @param y the y-coordinate, measured in pixels from the top-left corner of the page, of the number's destination.
+    * @param alignment alignment the horizontal alignment of the rendered text. Pass <code>0</code> for left alignment or <code>1</code>
+    * for right alignment.
+    * 
+    * @see #setCurrencySymbol(String currencySymbol)
+    */
    public void drawCurrency(double value, int x, int y, int alignment)
    {
      drawString(this.currencySymbol + round(value,2), x, y, alignment);
@@ -588,7 +666,10 @@ public class JSPrintPreview extends JDialog implements Printable, ActionListener
    }
    
    private class PaperPanel extends JPanel implements MouseListener, MouseMotionListener {
-      private PaperPanel() {
+
+	private static final long serialVersionUID = -4319157352239575206L;
+
+	private PaperPanel() {
       }
 
       public void paint(Graphics g) {
