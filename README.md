@@ -4,7 +4,7 @@ There are some issues with the current release of some of the classes. See the '
 
 ### INSTALLATION ###
 
-Installation is simple. Just download the JAR file and copy it into your Java project folder.
+Installation is simple. Just download the JAR file from `doc > JSLibrary.jar` and copy it into your Java project folder.
 
 The source code is also available, but you don't need that to actually use the classes in your project. Feel free to edit the source code as you see fit.
 
