@@ -450,6 +450,11 @@ public class JSUtil {
 	    return result;
 	  }
 	
+	/**
+	 * @deprecated The method this uses to check for an update (using http://joshsunshine.me.uk) is going away soon, so get ready to
+	 * 				stop using this. The JSLibrary is hosted on GitHub now at http://github.com/jobbogamer/JSLibrary so changelogs
+	 * 				and version histories will be readily available there.
+	 */
 	public static void checkForJSLibraryUpdate() {
 		try  {
 			URL url = new URL("http://www.joshsunshine.me.uk/jslibrary/version.txt");
