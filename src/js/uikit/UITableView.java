@@ -162,6 +162,22 @@ public class UITableView extends JScrollPane implements MouseListener {
 		table.repaint();
 	}
 	
+	/**
+	 * Deletes the specified row of the table.
+	 * 
+	 * @param row the index of the row to delete
+	 */
+	public void deleteRow(int row) {
+		UITableViewCell cell = getCellAtIndex(row);
+		cells.remove(cell);
+		table.remove(cell);
+		for (int i = 0; i < cells.size(); i ++) {
+			UITableViewCell c = getCellAtIndex(i);
+			c.setBounds(0, 50 * i, getWidth() - 20, 50); 
+		}
+		table.repaint();
+	}
+	
 	/* Begin listener methods */
 
 	public void mouseClicked(MouseEvent e) {

@@ -168,6 +168,10 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 
 	public void mouseClicked(MouseEvent e) {
 		UITableViewCell cell = (UITableViewCell) e.getSource();
+		for (int i = 0; i < table.getRowCount(); i ++) {
+			if (table.getCellAtIndex(i) == cell)
+				table.deleteRow(i);
+		}
 	}
 
 	public void mouseEntered(MouseEvent e) {
