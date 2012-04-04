@@ -2,13 +2,13 @@ JSLibrary is a Java library I created to help with A Level Computing. It takes c
 
 There are some issues with the current release of some of the classes. See the 'Issues' tab above for more info.
 
-### INSTALLATION ###
+### Installation ###
 
 Installation is simple. Just download the JAR file from `doc > JSLibrary.jar` and copy it into your Java project folder.
 
 The source code is also available, but you don't need that to actually use the classes in your project. Feel free to edit the source code as you see fit.
 
-### USAGE INSTRUCTIONS ###
+### Usage Instructions ###
 
 Once the JAR is in your project folder, you should be able to use any of the classes included by typing `import js.*;` at the top of your class file. Or, if you use Eclipse, you can automatically import any classes you use using `⌘+⇧+O`.
 
