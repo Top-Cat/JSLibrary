@@ -1,6 +1,5 @@
 package js.dynamic;
 
-import js.JSUtil;
 
 
 /**
@@ -22,7 +21,6 @@ public class JSQueue<E> {
 	 * Initialises a new queue containing no data items.
 	 */
 	public JSQueue() {
-		JSUtil.checkForJSLibraryUpdate();
 		start = null;
 		end = null;
 		nodeCount = 0;

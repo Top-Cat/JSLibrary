@@ -47,7 +47,6 @@ public class JSPreferenceWindow implements ActionListener {
 	JPanel mainPanel;
 	
 	public JSPreferenceWindow(Class<?> c, JSPreferencePane[] thePanes) {
-		JSUtil.checkForJSLibraryUpdate();
 		prefs = Preferences.userNodeForPackage(c);
 		theClass = c;
 		panes = new Vector<JSPreferencePane>();
