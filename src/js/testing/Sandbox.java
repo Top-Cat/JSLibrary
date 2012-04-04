@@ -18,6 +18,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -27,7 +29,6 @@ import js.JSFrame;
 import js.JSProgressBar;
 import js.JSStepper;
 import js.uikit.UITableView;
-import js.uikit.UITableViewCell;
 import js.uikit.UIToolbar;
 
 public class Sandbox extends JSFrame implements ActionListener, MouseListener,
@@ -53,41 +54,15 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
 		
-		table = new UITableView(UITableViewCell.SUBTITLE_CELL_STYLE);
-		setLayout(null);
-		table.setBounds(0, 44, 300, 435);
-		add(table);
+		setGradientBackground(Color.pink, Color.orange);
 		
-		table.addRow("id", "integer, primary key", UITableViewCell.DISCLOSURE_INDICATOR, false);
-		table.addRow("title", "choice", UITableViewCell.DISCLOSURE_INDICATOR, false);
-		table.addRow("forename", "string", UITableViewCell.DISCLOSURE_INDICATOR, true);
-		table.addRow("surname", "string", UITableViewCell.DISCLOSURE_INDICATOR, true);
-		table.addRow("address1", "string", UITableViewCell.DISCLOSURE_INDICATOR, true);
-		table.addRow("address2", "string", UITableViewCell.DISCLOSURE_INDICATOR, true);
-		table.addRow("town", "string", UITableViewCell.DISCLOSURE_INDICATOR, true);
-		table.addRow("postcode", "string", UITableViewCell.DISCLOSURE_INDICATOR, true);
-		table.addRow("paysVAT", "boolean", UITableViewCell.DISCLOSURE_INDICATOR, true);
+		JCheckBox box = new JCheckBox("Moo");
+		box.setBounds(20, 150, 100, 30);
+		add(box);
 		
-		
-		table.addMouseListener(this);
-		
-		
-		toolbar = new UIToolbar("", "Customer", "Add New");
-		toolbar.setBounds(0, 0, 300, 45);
-		toolbar.getRightButton().addActionListener(this);
-		toolbar.setTitleEditable(true);
-		add(toolbar);
-		
-		anotherPanel = new JPanel();
-		anotherPanel.setBackground(new Color(128, 128, 128));
-		anotherPanel.setBounds(300, 44, 300, 435);
-		add(anotherPanel);
-		
-		badgeButton = new JSBadgeButton();
-		badgeButton.setText("Slide!");
-		badgeButton.setBounds(25, 525, 50, 20);
-		badgeButton.addActionListener(this);
-		add(badgeButton);
+		JButton button = new JButton("Hi there");
+		button.setBounds(20, 20, 50, 100);
+		add(button);
 		
 		setVisible(true);
 	}
@@ -167,11 +142,6 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		UITableViewCell cell = (UITableViewCell) e.getSource();
-		for (int i = 0; i < table.getRowCount(); i ++) {
-			if (table.getCellAtIndex(i) == cell)
-				table.deleteRow(i);
-		}
 	}
 
 	public void mouseEntered(MouseEvent e) {
