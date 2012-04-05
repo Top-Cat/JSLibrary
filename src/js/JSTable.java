@@ -291,6 +291,7 @@ public class JSTable extends JPanel implements MouseListener {
    /**
     * Sets the text alignment of the text in a specified column.
     * 
+    * @param column the index of the column to set the alignment of.
     * @param alignment the SwingConstants integer (or the JSTable equivalent) for the alignment to set the column's text to.
     * 
     * @category setter
@@ -550,7 +551,7 @@ public class JSTable extends JPanel implements MouseListener {
    /**
     * Set the font for the title label.
     * 
-    * @param f the font for the title background.
+    * @param f the font for the title.
     * 
     * @category setter
     */
@@ -573,12 +574,9 @@ public class JSTable extends JPanel implements MouseListener {
 	/**
 	 * Sets the specified string value in the specified cell.
 	 * 
-	 * @param value
-	 *            the string to be added to the table.
-	 * @param row
-	 *            the row of the cell to add the object to.
-	 * @param column
-	 *            the column of the cell to add the object to.
+	 * @param value the string to be added to the table.
+	 * @param row the row of the cell to add the object to.
+	 * @param column the column of the cell to add the object to.
 	 * @return <code>true</code> if the value is successfully set; otherwise
 	 *         <code>false</code>.
 	 * 
@@ -733,7 +731,7 @@ public class JSTable extends JPanel implements MouseListener {
     * Sorts the table into ascending order by the values in the specified column.
     * If this method is called on the same column twice consecutively, the sort order is changed to descending.
     * 
-    * @param column
+    * @param column the column to sort the table by
     * 
     * @category utility
     */

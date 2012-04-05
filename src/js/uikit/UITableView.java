@@ -181,7 +181,7 @@ public class UITableView extends JScrollPane implements MouseListener {
 	/**
 	 * Deletes the specified cell from the table.
 	 * 
-	 * @param row the cell to delete
+	 * @param cell the cell to delete
 	 */
 	public void deleteCell(UITableViewCell cell) {
 		cells.remove(cell);
