@@ -13,3 +13,9 @@ The source code is also available, but you don't need that to actually use the c
 Once the JAR is in your project folder, you should be able to use any of the classes included by typing `import js.*;` at the top of your class file. Or, if you use Eclipse, you can automatically import any classes you use using `⌘+⇧+O`.
 
 If you have trouble, it may be that you need to add the library to the build path. If you're using Eclipse, right-click the JAR file in the Navigation panel and choose Build Path > Add to Build Path. From there, it should work fine.
+
+### Documentation ###
+
+Full Javadoc documentation is available at http://joshsunshine.me.uk/jslibrary and this can be linked to the JAR in Eclipse so that class and method explanations appear in the yellow pop-ups.
+
+To link the documentation in Eclipse, right click the JAR file's entry under Referenced Libraries and choose Properties. On the left hand side, select Javadoc Location and then enter either the path to the documentation you have downloaded from GitHub or the URL to the documentation online (http://www.joshsunshine.me.uk/jslibrary).
