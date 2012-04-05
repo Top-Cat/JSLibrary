@@ -11,7 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * An extension to {@link JFrame} which simply provides a way to animate size changes.
+ * An extension to {@link JFrame} which provides a way to animate size changes and to give the frame
+ * a gradient as a background instead of a solid color.
  * 
  * @author Josh
  * @version 1.0.1
@@ -60,6 +61,12 @@ public class JSFrame extends JFrame {
 		}
 	}
 	
+	/**
+	 * Sets the background of the frame to a vertical linear gradient.
+	 * 
+	 * @param startColor the color at the top of the frame's gradient
+	 * @param endColor the color at the bottom of the frame's gradient
+	 */
 	public void setGradientBackground(Color startColor, Color endColor) {
 		hasGradient = true;
 		start = startColor;
@@ -93,6 +100,9 @@ public class JSFrame extends JFrame {
 		this.layout = layout;
 	}
 	
+	/**
+	 * Resets the background to what it was before the gradient was added.
+	 */
 	public void removeGradientBackground() {
 		hasGradient = false;
 		repaint();

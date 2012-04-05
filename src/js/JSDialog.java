@@ -11,7 +11,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 /**
- * An extension to {@link JDialog} which simply provides a way to animate size changes.
+ * An extension to {@link JDialog} which simply provides a way to animate size changes and to give the dialog
+ * a gradient as a background instead of a solid color.
  * 
  * @author Josh
  * @version 1.0
@@ -62,6 +63,12 @@ public class JSDialog extends JDialog {
 		}
 	}
 	
+	/**
+	 * Sets the background of the dialog to a vertical linear gradient.
+	 * 
+	 * @param startColor the color at the top of the dialog's gradient
+	 * @param endColor the color at the bottom of the dialog's gradient
+	 */
 	public void setGradientBackground(Color startColor, Color endColor) {
 		hasGradient = true;
 		start = startColor;
@@ -95,6 +102,9 @@ public class JSDialog extends JDialog {
 		this.layout = layout;
 	}
 	
+	/**
+	 * Resets the background to what it was before the gradient was added.
+	 */
 	public void removeGradientBackground() {
 		hasGradient = false;
 		repaint();
