@@ -2,6 +2,7 @@ package js;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -12,7 +13,6 @@ import java.util.Vector;
  * JSTextFileUtility is a class which provides simple read/write access to a plain text file stored on disk.
  * 
  * @author Josh
- * @version 1.0
  */
 public class JSTextFileUtility {
 
@@ -31,6 +31,8 @@ public class JSTextFileUtility {
 	 */
 	public JSTextFileUtility(String filename) {
 		this.filename = filename;
+		if (! fileExists(filename))
+			createNewFile(filename);
 	}
 	
 	/**
@@ -164,6 +166,42 @@ public class JSTextFileUtility {
 	 */
 	public boolean appendToFileWithSeparator(String stringToAppend, String separator) {
 		return appendToFile(separator + stringToAppend);
+	}
+	
+	private boolean fileExists(String filename) {
+		File file = new File(filename);
+		return file.exists();
+	}
+	
+	private void createNewFile(String filename) {
+		File file = new File(filename);
+		File parent = file.getParentFile();
+		if (parent != null) {
+			if (! parent.getAbsolutePath().equals(File.pathSeparator)) {
+				if (! fileExists(parent.getAbsolutePath())) {
+					createDirectory(parent.getAbsolutePath());
+				}
+			}
+		}
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(file.getPath());
+		}
+	}
+	
+	private void createDirectory(String path) {
+		File file = new File(path);
+		File parent = file.getParentFile();
+		if (parent != null) {
+			if (parent.getAbsolutePath().equals(File.pathSeparator)) {
+				if (! fileExists(parent.getAbsolutePath())) {
+					createDirectory(parent.getAbsolutePath());
+				}
+			}
+		}
+		file.mkdir();
 	}
 	
 	private boolean openForReading() {

@@ -7,7 +7,7 @@ import js.JSTextFileUtility;
 
 public class JSLog extends JSTextFileUtility {
 	
-	boolean shouldUseDate;
+	boolean shouldUseDate = true;
 	int dateFormat = LONG_FORMAT;
 	
 	public static final int SHORT_FORMAT = 0;
@@ -35,7 +35,7 @@ public class JSLog extends JSTextFileUtility {
 		if (dateFormat == SHORT_FORMAT) {
 			return dateToString(now) + " ";
 		} else {
-			return dateToString(now) + "," + timeToString(now) + " "; 
+			return dateToString(now) + ", " + timeToString(now) + " "; 
 		}
 	}
 	
