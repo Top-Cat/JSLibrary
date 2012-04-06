@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import js.JSFrame;
-import js.incomplete.JSLog;
+import js.JSLog;
 
 public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 		ItemListener, ComponentListener {
