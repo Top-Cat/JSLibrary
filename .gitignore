@@ -116,3 +116,9 @@ bin/js/incomplete/JSLog.class
 tmp/log.txt
 
 bin/js/JSLog.class
+
+bin/js/quiz/JSMultiChoiceQuestion.class
+
+bin/js/quiz/JSQuestion.class
+
+bin/js/quiz/JSQuestionSet.class
