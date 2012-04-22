@@ -28,20 +28,7 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 	JPanel anotherPanel;
 	
 	Sandbox() {
-		setSize(300, 500);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLayout(null);
 		
-		log = new JSLog("tmp/log.txt");
-		
-		for (int i = 0; i < 5; i ++) {
-			JButton button = new JButton(Integer.toString(i));
-			button.addActionListener(this);
-			button.setBounds(25, (i * 75) + 25, 100, 50);
-			add(button);
-		}
-		
-		setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent e) {
