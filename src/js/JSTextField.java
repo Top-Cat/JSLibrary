@@ -59,7 +59,6 @@ public class JSTextField extends JTextField implements KeyListener, FocusListene
 	 */
 	public JSTextField(int width) {
 		super(width);
-		JSUtil.checkForJSLibraryUpdate();
 		this.addKeyListener(this);
 		this.addFocusListener(this);
 		init();
@@ -73,7 +72,6 @@ public class JSTextField extends JTextField implements KeyListener, FocusListene
 	 */
 	public JSTextField(int maximumCharacters, int width) {
 		super(width);
-		JSUtil.checkForJSLibraryUpdate();
 		setMaximumCharacters(maximumCharacters);
 		this.addKeyListener(this);
 		this.addFocusListener(this);
