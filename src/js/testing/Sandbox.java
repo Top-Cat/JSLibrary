@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 
 import js.JSFrame;
 import js.JSLog;
+import js.quiz.JSMultiChoiceQuestion;
+import js.quiz.JSQuestion;
 
 public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 		ItemListener, ComponentListener {
@@ -28,6 +30,11 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 	JPanel anotherPanel;
 	
 	Sandbox() {
+		
+		JSQuestion q = JSQuestion.createQuestion("<Where is the Eiffel Tower?> <Paris>");
+		System.out.println(q.getText());
+		System.out.println(q.getAnswer());
+		System.out.println(q.getHint());
 		
 	}
 

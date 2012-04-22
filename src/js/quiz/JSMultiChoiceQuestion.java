@@ -34,18 +34,31 @@ public class JSMultiChoiceQuestion extends JSQuestion {
 	}
 	
 	public String[] getHintByHiding(int numberToLeave) {
-		String[] remaining = new String[numberToLeave];
+		String[] remaining = new String[choices.length];
 		remaining[correctAnswer] = getCorrectAnswer();
 		Random r = new Random();
 		int added = 1;
 		while (added < numberToLeave) {
 			int next = r.nextInt(choices.length);
-			if (remaining[next].length() == 0) {
+			if (remaining[next] == null) {
 				remaining[next] = choices[next];
 				added ++;
 			}
 		}
 		return remaining;
+	}
+	
+	public String[] getHintByRemoving(int numberToLeave) {
+		String[] hidden = getHintByHiding(numberToLeave);
+		String[] hint = new String[numberToLeave];
+		int nextEmpty = 0;
+		for (int i = 0; i < hidden.length; i ++) {
+			if (hidden[i] != null) {
+				hint[nextEmpty] = hidden[i];
+				nextEmpty ++;
+			}
+		}
+		return hint;
 	}
  
 	public void setChoices(String[] answers) {

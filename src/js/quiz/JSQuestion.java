@@ -1,5 +1,7 @@
 package js.quiz;
 
+import js.JSUtil;
+
 public class JSQuestion {
 
 	private String text;
@@ -38,6 +40,41 @@ public class JSQuestion {
 	
 	public void setAnswer(String answer) {
 		this.answer = answer;
+	}
+	
+	public static JSQuestion createQuestion(String s) {
+		String text = "", answer = "", hint = "";
+		
+		if (JSUtil.countInstancesOf("<", s) == JSUtil.countInstancesOf(">", s)) {
+			int i = s.indexOf("<") + 1;
+			int j = s.indexOf(">", i);
+			text = s.substring(i, j);
+			
+			i = s.indexOf("<", i) + 1;
+			if (i > 0) {
+				j = s.indexOf(">", i);
+				answer = s.substring(i, j);
+			}
+			
+			i = s.indexOf("<", i) + 1;
+			if (i > 0) {
+				j = s.indexOf(">", i);
+				hint = s.substring(i, j);
+			}
+			
+			if (answer.length() == 0)
+				System.err.println("Error creating question from \"" + s + "\"; no answer provided. \n");
+			else {
+				if (! answer.contains(",")) {
+					JSQuestion q = new JSQuestion(text, answer, hint);
+					return q;
+				}
+			}
+		} else {
+			System.err.println("Error creating question from \"" + s + "\"; malformed tags. \n");
+		}
+		
+		return null;
 	}
 	
 }
