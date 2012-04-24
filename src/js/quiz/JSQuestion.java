@@ -68,6 +68,10 @@ public class JSQuestion {
 				if (! answer.contains(",")) {
 					JSQuestion q = new JSQuestion(text, answer, hint);
 					return q;
+				} else {
+					Object[] array = JSMultiChoiceQuestion.parseChoices(answer);
+					JSMultiChoiceQuestion q = new JSMultiChoiceQuestion(text, (String[]) array[0], (Integer) array[1]);
+					return q;
 				}
 			}
 		} else {

@@ -31,10 +31,16 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 	
 	Sandbox() {
 		
-		JSQuestion q = JSQuestion.createQuestion("<Where is the Eiffel Tower?> <Paris>");
-		System.out.println(q.getText());
-		System.out.println(q.getAnswer());
-		System.out.println(q.getHint());
+		String s = "<What is the capital of France?> <Paris*, London, Berlin, Tokyo, New York>";
+		
+		JSMultiChoiceQuestion mq = (JSMultiChoiceQuestion) JSQuestion.createQuestion(s);
+		
+		System.out.println("Question: " + mq.getText());
+		System.out.print("Choices: ");
+		for (int i = 0; i < mq.getNumberOfChoices(); i ++) {
+			System.out.print(mq.getChoice(i) + ", ");
+		}
+		System.out.println("\nCorrect answer: " + mq.getCorrectAnswerIndex() + " (" + mq.getAnswer() + ")");
 		
 	}
 

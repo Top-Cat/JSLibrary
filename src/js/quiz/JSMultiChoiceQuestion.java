@@ -2,6 +2,8 @@ package js.quiz;
 
 import java.util.Random;
 
+import js.JSUtil;
+
 public class JSMultiChoiceQuestion extends JSQuestion {
 
 	String[] choices;
@@ -11,6 +13,42 @@ public class JSMultiChoiceQuestion extends JSQuestion {
 		super(text, choices[correctAnswerIndex]);
 		this.choices = choices;
 		this.correctAnswer = correctAnswerIndex;
+	}
+	
+	public static Object[] parseChoices(String s) {
+		int count = JSUtil.countInstancesOf(",", s) + 1;
+		int i = 0, j = s.indexOf(",");
+		String[] answers = new String[count];
+		int correctIndex = -1;
+		
+		answers[0] = s.substring(i, j).trim();
+		if (answers[0].contains("*"))
+			correctIndex = 0;
+		answers[0] = answers[0].replace("*", "");
+		
+		for (int x = 1; x < count - 1; x ++) {
+			i = j + 1;
+			j = s.indexOf(",", i);
+			answers[x] = s.substring(i, j).trim();
+			if (answers[x].contains("*"))
+				correctIndex = x;
+			answers[x] = answers[x].replace("*", "");
+		}
+		
+		i = j + 1;
+		j = s.length();
+		answers[count - 1] = s.substring(i, j).trim();
+		if (answers[count - 1].contains("*"))
+			correctIndex = count - 1;
+		answers[count - 1] = answers[count - 1].replace("*", "");
+		
+		if (correctIndex >= 0) {
+			Object[] array = {answers, correctIndex};
+			return array;
+		} else {
+			System.err.println("Error parsing choices from \"" + s + "\"; no correct answer marked.");
+			return null;
+		}
 	}
 
 	public String[] getChoices() {
@@ -25,7 +63,7 @@ public class JSMultiChoiceQuestion extends JSQuestion {
 		return correctAnswer;
 	}
 	
-	public String getCorrectAnswer() {
+	public String getAnswer() {
 		return choices[correctAnswer];
 	}
 	
@@ -35,7 +73,7 @@ public class JSMultiChoiceQuestion extends JSQuestion {
 	
 	public String[] getHintByHiding(int numberToLeave) {
 		String[] remaining = new String[choices.length];
-		remaining[correctAnswer] = getCorrectAnswer();
+		remaining[correctAnswer] = getAnswer();
 		Random r = new Random();
 		int added = 1;
 		while (added < numberToLeave) {
