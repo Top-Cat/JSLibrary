@@ -60,6 +60,8 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 	private JLabel calendarTitle;
 	private boolean todayShowing;
 	
+	private boolean isMacOS;
+	
 	/**
 	 * Creates a new JSDateEntry using <code>DROPDOWN_VIEW</code> and no initial date.
 	 * The year dropdown will contain 25 past years and 5 future years. 
@@ -126,6 +128,8 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 	 * @param yearsAhead an integer number of years to display in this JSDateEntry in the future from the current year.
 	 */
 	public JSDateEntry(int viewType, Calendar initialDate, int yearsBehind, int yearsAhead) {
+		
+		isMacOS = System.getProperty("os.name").contains("Mac");
 		
 		this.viewType = viewType;
 		this.date = initialDate;
@@ -433,7 +437,10 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 			dayList[i] = new JButton(Integer.toString(i + 1));
 			if (i + 1 == today.get(Calendar.DATE) && todayShowing) {
 				dayList[i].setForeground(new Color(72, 139, 245));
-				dayList[i].setFont(dayList[i].getFont().deriveFont(Font.BOLD));
+				if (isMacOS)
+					dayList[i].setFont(dayList[i].getFont().deriveFont(Font.BOLD));
+				else
+					dayList[i].setFont(dayList[i].getFont().deriveFont(Font.BOLD).deriveFont(10));
 			}
 			dayList[i].addActionListener(this);
 			calendarPanel.addComponent(dayList[i]);
