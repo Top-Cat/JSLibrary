@@ -17,6 +17,7 @@ import js.JSFrame;
 import js.JSLog;
 import js.JSTable;
 import js.JSTableDialog;
+import js.JSUtil;
 
 public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 		ItemListener, ComponentListener {
@@ -31,18 +32,10 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 	
 	Sandbox() {
 		
-		String[] headings = {"X#", "Y#", "Z#"};
-		JSTableDialog td = new JSTableDialog("", headings, 5);
-		JSTable t = td.getTable();
-		
-		for (int i = 0; i < 5; i ++) {
-			for (int j = 0; j < 3; j ++) {
-				t.setValueAt(i + j, i, j);
-			}
-		}
-		
-		td.removeKeyListener();
-		td.setVisible(true);
+		System.out.println(JSUtil.addRankingSuffix(1));
+		System.out.println(JSUtil.addRankingSuffix(11));
+		System.out.println(JSUtil.addRankingSuffix(21));
+		System.out.println(JSUtil.addRankingSuffix(111));
 		
 	}
 

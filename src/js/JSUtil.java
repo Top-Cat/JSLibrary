@@ -21,8 +21,6 @@ import java.util.Vector;
  *
  */
 public class JSUtil {
-
-	private static final int[] LIBRARY_VERSION = {1, 4, 1};
 	
 	/**
 	 * Rounds a double to the specified number of decimal places.
@@ -56,110 +54,7 @@ public class JSUtil {
 												+ newLength + " <= " + array.length + ")");
 		}
 	}
-	
-	/**
-	 * Sorts an array of integers into numeric order, either ascending or descending.
-	 * 
-	 * @param array the array of integers to sort.
-	 * @param ascending whether the array should be sorted into ascending order or not.
-	 * If <code>false</code>, descending order is used.
-	 * 
-	 * @return the array sorted into the chosen order.
-	 */
-	public static int[] bubbleSort(int[] array, boolean ascending) {
-		int length = array.length;
-		int swaps = 0;
-		int temp = 0;
-		boolean finished = false;
 		
-		while (! finished) {
-			swaps = 0;
-			for (int i = 0; i < length - 1; i ++) {
-				if (ascending) {
-					if (array[i] > array[i + 1]) {
-						temp = array[i];
-						array[i] = array[i + 1];
-						array[i + 1] = temp;
-						swaps ++;
-						finished = false;
-					}
-				}
-				else {
-					if (array[i] < array[i + 1]) {
-						temp = array[i];
-						array[i] = array[i + 1];
-						array[i + 1] = temp;
-						swaps ++;
-						finished = false;
-					}
-				}
-			}
-			if (swaps == 0)
-				finished = true;
-		}
-		
-		return array;
-	}
-	
-	
-	
-	
-	/**
-	 * Sorts an array of strings into alphabetical order, either ascending or descending.
-	 * 
-	 * @param array the array of strings to sort.
-	 * @param ascending whether the array should be sorted into ascending order or not.
-	 * If <code>false</code>, descending order is used.
-	 * 
-	 * @return the array sorted into the chosen order.
-	 */
-	public static String[] bubbleSort(String[] array, boolean ascending) {
-		Vector<String> vector = new Vector<String>();
-		for (int i = 0; i < array.length; i ++) {
-			vector.add(array[i]);
-		}
-		
-		if (ascending) {
-			Collections.sort(vector);
-		}
-		else {
-			Comparator<String> comparator = Collections.reverseOrder();
-			Collections.sort(vector, comparator);
-		}
-		
-		for (int j = 0; j < array.length; j ++) {
-			array[j] = vector.elementAt(j);
-		}
-		
-		return array;
-	}
-	
-	
-	
-	
-	/**
-	 * Uses the Insertion Sort method to sort an array of integers into ascending order.<br><br>
-	 * See <code>http://en.wikipedia.org/wiki/Insertion_sort</code> for information on the Insertion Sort.
-	 * 
-	 * @param array the array of integers to be sorted into order.
-	 * @return the same array, but with the integers sorted into order.
-	 */
-	public static int[] insertionSort(int[] array) {
-		for (int j = 1; j < array.length; j ++) {
-			int key = array[j];
-			int i = j - 1;
-			while (i >= 0 && array[i] > key) {
-				array[i + 1] = array[i];
-				i --;
-			}
-			array[i + 1] = key;
-		}
-		return array;
-	}
-	
-	
-	
-	
 	/**
 	 * Generates a random colour.
 	 * 
@@ -172,10 +67,7 @@ public class JSUtil {
 		Color randomColor = new Color(r, g, b);
 		return randomColor;
 	}
-	
-	
-	
-	
+		
 	/**
 	 * Generates a random integer between two limits.
 	 * 
@@ -185,16 +77,10 @@ public class JSUtil {
 	 */
 	public static int randIntBetween(int low, int high) {
 		int random = 0;
-		
-		do {
-			random = (int) (Math.random() * high);
-		} while (random < low || random > high);
-		
+		int diff = high - low;
+		random = (int) (Math.random() * diff) + low;
 		return random;
 	}
-	
-	
-	
 	
 	/**
 	 * Formats a UK postcode into the standard format.
@@ -217,9 +103,6 @@ public class JSUtil {
 			return newPostcode;
 		}
 	}
-	
-	
-	
 	
 	/**
 	 * Formats a phone number into the standard UK format.
@@ -254,9 +137,6 @@ public class JSUtil {
 		}
 	}
 	
-	
-	
-	
 	/**
 	 * Removes all instances of a substring from within a string.
 	 * 
@@ -268,9 +148,6 @@ public class JSUtil {
 		haystack = haystack.replaceAll(needle, "");
 		return haystack;
 	}
-	
-	
-	
 	
 	/**
 	 * Uses the Google Maps API to lookup the full address of a postcode.
@@ -363,9 +240,6 @@ public class JSUtil {
 		}
 	}
 	
-	
-	
-	
 	/**
 	 * Counts the number of times a substring appears in a string.
 	 * 
@@ -383,12 +257,8 @@ public class JSUtil {
 				instances ++;
 		}
 		
-		// System.out.println(instances);
 		return instances;
 	}
-	
-	
-	
 	
 	/**
 	 * Adds a 'ranking' suffix to a number - "st", "nd" etc. for creating rankings such as "1st" or "2nd" from an integer.
@@ -398,33 +268,21 @@ public class JSUtil {
 	 */
 	public static String addRankingSuffix(int value) {
 		String ranking = Integer.toString(value);
-		if (ranking.charAt(ranking.length()-1) == '1')
+		if ((ranking.length() == 1 && ranking.charAt(ranking.length() - 1) == '1') || (ranking.length() > 1 && ranking.charAt(ranking.length() - 1) == '1' && ranking.charAt(ranking.length() - 2) != '1'))
 			ranking += "st";
-		else if (ranking.charAt(ranking.length()-1) == '2')
+		else if (ranking.charAt(ranking.length() - 1) == '2')
 			ranking += "nd";
-		else if (ranking.charAt(ranking.length()-1) == '3')
+		else if (ranking.charAt(ranking.length() - 1) == '3')
 			ranking += "rd";
 		else
 			ranking += "th";
 		return ranking;
 	}
 	
-	
-	
 	public static int[] generateRandomIntegerArray(int low, int high, int n) {
 		int[] array = new int[n];
 		for (int i = 0; i < n; i ++) {
 			int x = randIntBetween(low, high);
-			array[i] = x;
-		}
-		return array;
-	}
-	
-	
-	public static int[] generateRandomIntegerArray(int n) {
-		int[] array = new int[n];
-		for (int i = 0; i < n; i ++) {
-			int x = (int) (Math.random() * 1000);
 			array[i] = x;
 		}
 		return array;
@@ -443,57 +301,10 @@ public class JSUtil {
 	      }
 	    }
 	    // Create a new array of the correct type
-	    Object[] result = (Object[])Array.newInstance(commonSuperClass, a.length + b.length);
+	    Object[] result = (Object[]) Array.newInstance(commonSuperClass, a.length + b.length);
 	    // Copy the two arrays into the large array
 	    System.arraycopy(a, 0, result, 0, a.length);
 	    System.arraycopy(b, 0, result, a.length, b.length);
 	    return result;
 	  }
-	
-	/**
-	 * @deprecated The method this uses to check for an update (using http://joshsunshine.me.uk) is going away soon, so get ready to
-	 * 				stop using this. The JSLibrary is hosted on GitHub now at http://github.com/jobbogamer/JSLibrary so changelogs
-	 * 				and version histories will be readily available there.
-	 */
-	public static void checkForJSLibraryUpdate() {
-		try  {
-			URL url = new URL("http://www.joshsunshine.me.uk/jslibrary/version.txt");
-			
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-			
-			String inputLine;
-			String output = "";
-			
-			while ((inputLine = in.readLine()) != null) {
-				output += inputLine;
-			}
-			
-			in.close();
-			
-			String firstBit = output.substring(0, output.indexOf("."));
-			String secondBit = output.substring(output.indexOf(".") + 1, output.lastIndexOf("."));
-			String thirdBit = output.substring(output.lastIndexOf(".") + 1, output.length());
-			int[] site = {Integer.parseInt(firstBit), Integer.parseInt(secondBit), Integer.parseInt(thirdBit)};
-			if (isNewerVersion(site)) {
-				System.out.println("A newer version of the JSLibrary is available, version " + output + 
-									" (You are currently running " + LIBRARY_VERSION[0] + "." + LIBRARY_VERSION[1] + 
-									"." + LIBRARY_VERSION[2] + ")");
-				
-				System.out.println("Download the latest version from http://www.joshsunshine.me.uk/jslibrary/download.html");
-			}
-		} catch (MalformedURLException mue) {
-		} catch (IOException ioe) {
-		}
-	}
-	
-	private static boolean isNewerVersion(int[] site) {
-		if (site[0] > LIBRARY_VERSION[0])
-			return true;
-		else if (site[0] == LIBRARY_VERSION[0] && site[1] > LIBRARY_VERSION[1])
-			return true;
-		else if (site[0] == LIBRARY_VERSION[0] && site[1] == LIBRARY_VERSION[1] && site[2] > LIBRARY_VERSION[2])
-			return true;
-		else
-			return false;
-	}
 }
