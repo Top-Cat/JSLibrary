@@ -442,22 +442,6 @@ public class JSTable extends JPanel implements MouseListener {
 	    //          + "Trying to assign a "+ value.getClass().toString().substring(16, classType.length()) +" to a cell with class " + classType.substring(16, classType.length()) + ".");
 	       }
 	       return false;
-	   }
-   
-   /**
-    * Set the foreground (text) color for the specified row of the table.
-    * 
-    * @param row the index of the row to change
-    * @param c the color to change the text to
-    * 
-    * @category setter
-    */
-   public void setRowColor(int row, Color c) {
-	   this.rowColors.set(row, c);
-	   for (int i = 0; i < table.getColumnCount(); i ++) {
-		   if (tableModel.getColumnClass(i) != Boolean.class)
-			   this.table.setDefaultRenderer(tableModel.getColumnClass(i), new CellRenderer());
-	   }
    }
    
    /**
@@ -1067,11 +1051,6 @@ public class JSTable extends JPanel implements MouseListener {
 				int col) {
 			Component comp = super.getTableCellRendererComponent(table, value,
 					isSelected, hasFocus, row, col);
-
-			if (!isSelected)
-				comp.setForeground(rowColors.elementAt(row));
-			else
-				comp.setForeground(Color.white);
 
 			if (columnAligments.elementAt(col) != null)
 				setHorizontalAlignment(columnAligments.elementAt(col));
