@@ -197,6 +197,13 @@ public class JSTableDialog extends JSDialog implements ActionListener, KeyListen
 		resize();
 	}
 	
+	/**
+	 *  Removes the key listener from the dialog so that the mouse must be used to select rows and buttons.
+	 */
+	public void removeKeyListener() {
+		removeKeyAndContainerListenerRecursively(this);
+	}
+	
 	/* *** Begin private methods *** */
 	
 	private static String[] getDefaultButtonArray() {
@@ -216,17 +223,28 @@ public class JSTableDialog extends JSDialog implements ActionListener, KeyListen
 			setSize(600, 650);
 	}
 	
-	private void addKeyAndContainerListenerRecursively(Component c)
-    {
+	private void addKeyAndContainerListenerRecursively(Component c) {
          c.addKeyListener(this);
          if(c instanceof Container) {
-              Container cont = (Container)c;
+              Container cont = (Container) c;
               cont.addContainerListener(this);
               Component[] children = cont.getComponents();
-              for (int i = 0; i < children.length; i++){
+              for (int i = 0; i < children.length; i++) {
                    addKeyAndContainerListenerRecursively(children[i]);
               }
          }
+    }
+	
+	private void removeKeyAndContainerListenerRecursively(Component c) {
+        c.removeKeyListener(this);
+        if(c instanceof Container) {
+             Container cont = (Container) c;
+             cont.removeContainerListener(this);
+             Component[] children = cont.getComponents();
+             for (int i = 0; i < children.length; i++) {
+                  removeKeyAndContainerListenerRecursively(children[i]);
+             }
+        }
     }
 	
 	/* *** Begin Listener methods *** */
@@ -288,7 +306,7 @@ public class JSTableDialog extends JSDialog implements ActionListener, KeyListen
 	
 	public void componentAdded(ContainerEvent e) {
         addKeyAndContainerListenerRecursively(e.getChild());
-   }
+    }
 
 	public void componentRemoved(ContainerEvent e) {
 		

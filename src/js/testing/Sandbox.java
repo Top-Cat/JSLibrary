@@ -15,8 +15,8 @@ import javax.swing.JTextField;
 
 import js.JSFrame;
 import js.JSLog;
-import js.quiz.JSMultiChoiceQuestion;
-import js.quiz.JSQuestion;
+import js.JSTable;
+import js.JSTableDialog;
 
 public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 		ItemListener, ComponentListener {
@@ -31,16 +31,18 @@ public class Sandbox extends JSFrame implements ActionListener, MouseListener,
 	
 	Sandbox() {
 		
-		String s = "<What is the capital of France?> <Paris*, London, Berlin, Tokyo, New York>";
+		String[] headings = {"X#", "Y#", "Z#"};
+		JSTableDialog td = new JSTableDialog("", headings, 5);
+		JSTable t = td.getTable();
 		
-		JSMultiChoiceQuestion mq = (JSMultiChoiceQuestion) JSQuestion.createQuestion(s);
-		
-		System.out.println("Question: " + mq.getText());
-		System.out.print("Choices: ");
-		for (int i = 0; i < mq.getNumberOfChoices(); i ++) {
-			System.out.print(mq.getChoice(i) + ", ");
+		for (int i = 0; i < 5; i ++) {
+			for (int j = 0; j < 3; j ++) {
+				t.setValueAt(i + j, i, j);
+			}
 		}
-		System.out.println("\nCorrect answer: " + mq.getCorrectAnswerIndex() + " (" + mq.getAnswer() + ")");
+		
+		td.removeKeyListener();
+		td.setVisible(true);
 		
 	}
 
