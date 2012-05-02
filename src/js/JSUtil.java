@@ -48,10 +48,20 @@ public class JSUtil {
 		if (newLength > array.length) {
 			Object[] newArray = new Object[newLength];
 			System.arraycopy(array, 0, newArray, 0, array.length);
-			return (T[]) newArray;
+			try {
+				return (T[]) newArray;
+			} catch (ClassCastException e) {
+				e.printStackTrace();
+				return null;
+			}
 		} else {
-			throw new IllegalArgumentException("The new length of the array must be greater than its old length. (" 
+			try {
+				throw new IllegalArgumentException("The new length of the array must be greater than its old length. (" 
 												+ newLength + " <= " + array.length + ")");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
 		}
 	}
 		
