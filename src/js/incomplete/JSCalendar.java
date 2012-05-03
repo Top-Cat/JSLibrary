@@ -6,15 +6,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
+import javax.swing.JButton;
+
 import js.JSGridPanel;
 import js.JSPanel;
 
 public class JSCalendar extends JSPanel implements ActionListener, MouseListener {
 
+	/* Variables */
+	
 	private int year, month;
 	private Vector<Event> events;
+	private boolean todayShowing;
+	
+	/* Interface */
 	
 	private JSGridPanel days;
+	private JButton previous, next;
 	
 	/* Constructors */
 	
