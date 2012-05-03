@@ -4,11 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Vector;
 
+import js.JSGridPanel;
 import js.JSPanel;
 
 public class JSCalendar extends JSPanel implements ActionListener, MouseListener {
 
+	private int year, month;
+	private Vector<Event> events;
+	
+	private JSGridPanel days;
+	
 	/* Constructors */
 	
 	
@@ -53,6 +60,10 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 
 	public void actionPerformed(ActionEvent e) {
 		
+	}
+	
+	private class Event {
+		// TODO
 	}
 
 }
