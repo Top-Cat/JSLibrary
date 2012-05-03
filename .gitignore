@@ -122,3 +122,9 @@ bin/js/quiz/JSMultiChoiceQuestion.class
 bin/js/quiz/JSQuestion.class
 
 bin/js/quiz/JSQuestionSet.class
+
+bin/js/incomplete/JSCalendar.class
+
+src/js/testing/Sandbox.java
+
+src/js/testing/Sandbox.java
