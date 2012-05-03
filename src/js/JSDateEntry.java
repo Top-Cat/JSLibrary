@@ -344,6 +344,36 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 	}
 	
 	/**
+	 * Sets the date being displayed by the JSDateEntry.
+	 * 
+	 * @param date the new date to display
+	 */
+	public void setDate(Calendar date) {
+		switch (viewType) {
+		case DROPDOWN_VIEW:
+			dayBox.setSelectedIndex(date.get(Calendar.DATE));
+			monthBox.setSelectedIndex(date.get(Calendar.MONTH) + 1);
+			yearBox.setSelectedItem(date.get(Calendar.YEAR));
+			break;
+		case REVERSE_DROPDOWN_VIEW:
+			dayBox.setSelectedIndex(date.get(Calendar.DATE));
+			monthBox.setSelectedIndex(date.get(Calendar.MONTH) + 1);
+			yearBox.setSelectedItem(date.get(Calendar.YEAR));
+			break;
+		case MULTI_TEXTFIELD_VIEW:
+			dayField.setText(Integer.toString(date.get(Calendar.DATE)));
+			monthField.setText(Integer.toString(date.get(Calendar.MONTH) + 1));
+			yearField.setText(Integer.toString(date.get(Calendar.YEAR)));
+			break;
+		case CALENDAR_BUTTON_VIEW:
+			currentDate = date;
+			textField.setText(Integer.toString(date.get(Calendar.DATE)) + "/" + Integer.toString(date.get(Calendar.MONTH) + 1) + "/"
+					+ Integer.toString(date.get(Calendar.YEAR)));
+			break;
+		}
+	}
+	
+	/**
 	 * Sets the background color of the calendar button in <code>CALENDAR_BUTTON_VIEW</code> to the specified color.
 	 * 
 	 * @param color the color to set the background of the calendar button to 
@@ -371,7 +401,7 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 		}
 		
 		JSGridPanel dayLabelPanel = new JSGridPanel(1, 7);
-		dayLabelPanel.setBounds(0, 35, 252, 30);
+		dayLabelPanel.setBounds(0, 35, 322, 30);
 		
 		String initials[] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 		JLabel dayLabels[] = new JLabel[7];
@@ -383,7 +413,7 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 		calendarDialog = new JDialog();
 		calendarDialog.setLayout(null);
 		calendarDialog.setModal(true);
-		calendarDialog.setSize(252, 270);
+		calendarDialog.setSize(322, 320);
 		calendarDialog.setLocation(calendarButton.getLocationOnScreen().x, calendarButton.getLocationOnScreen().y);
 		calendarDialog.setUndecorated(true);
 		calendarDialog.add(dayLabelPanel);
@@ -402,7 +432,8 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 		dialogYear = year;
 		
 		calendarPanel = new JSGridPanel(6, 7);
-		calendarPanel.setBounds(0, 65, 252, 162);
+		//TODO
+		calendarPanel.setBounds(0, 65, 322, 212);
 		calendarPanel.setBackgroundColor(new Color(200, 222, 255));
 		dayList = new JButton[getDaysInMonth(month, year)];
 		JPanel empty[] = new JPanel[21];
@@ -437,11 +468,10 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 			dayList[i] = new JButton(Integer.toString(i + 1));
 			if (i + 1 == today.get(Calendar.DATE) && todayShowing) {
 				dayList[i].setForeground(new Color(72, 139, 245));
-				if (isMacOS)
-					dayList[i].setFont(dayList[i].getFont().deriveFont(Font.BOLD));
-				else
-					dayList[i].setFont(dayList[i].getFont().deriveFont(Font.BOLD).deriveFont(10));
+				dayList[i].setFont(dayList[i].getFont().deriveFont(Font.BOLD));
 			}
+			if (! isMacOS)
+				dayList[i].setFont(dayList[i].getFont().deriveFont(11f));
 			dayList[i].addActionListener(this);
 			calendarPanel.addComponent(dayList[i]);
 		}
@@ -453,32 +483,38 @@ public class JSDateEntry extends JComponent implements KeyListener, FocusListene
 		}
 		
 		if (! (today.get(Calendar.YEAR) - this.yearsBehind == year && month == 0)) {
-			leftArrow = new JButton("Ç");
-			leftArrow.setBounds(5, 5, 30, 30);
-			leftArrow.setFont(leftArrow.getFont().deriveFont(16f));
+			leftArrow = new JButton("<");
+			leftArrow.setBounds(5, 5, 45, 30);
+			if (isMacOS)
+				leftArrow.setFont(leftArrow.getFont().deriveFont(16f));
+			else
+				leftArrow.setFont(leftArrow.getFont().deriveFont(12f));
 			leftArrow.addActionListener(this);
 			calendarDialog.add(leftArrow);
 		}
 		
 		if (! (today.get(Calendar.YEAR) + this.yearsAhead == year && month == 11)) {
-			rightArrow = new JButton("È");
-			rightArrow.setBounds(217, 5, 30, 30);
-			rightArrow.setFont(rightArrow.getFont().deriveFont(16f));
+			rightArrow = new JButton(">");
+			rightArrow.setBounds(272, 5, 45, 30);
+			if (isMacOS)
+				rightArrow.setFont(rightArrow.getFont().deriveFont(16f));
+			else
+				rightArrow.setFont(leftArrow.getFont().deriveFont(12f));
 			rightArrow.addActionListener(this);
 			calendarDialog.add(rightArrow);
 		}
 		
 		calendarTitle = new JLabel(getMonthForInt(month) + " " + Integer.toString(year), JLabel.CENTER);
-		calendarTitle.setBounds(0, 5, 252, 30);
+		calendarTitle.setBounds(0, 5, 322, 30);
 		calendarDialog.add(calendarTitle);
 		
 		closeCalendarButton = new JButton("Cancel");
-		closeCalendarButton.setBounds(10, 235, 100, 30);
+		closeCalendarButton.setBounds(50, 285, 100, 30);
 		closeCalendarButton.addActionListener(this);
 		calendarDialog.add(closeCalendarButton);
 		
 		todayButton = new JButton("Today");
-		todayButton.setBounds(142, 235, 100, 30);
+		todayButton.setBounds(182, 285, 100, 30);
 		todayButton.addActionListener(this);
 		calendarDialog.add(todayButton);
 		
