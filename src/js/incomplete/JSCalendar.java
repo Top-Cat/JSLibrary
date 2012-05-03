@@ -1,12 +1,15 @@
 package js.incomplete;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Calendar;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 import js.JSGridPanel;
 import js.JSPanel;
@@ -18,11 +21,14 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	private int year, month;
 	private Vector<Event> events;
 	private boolean todayShowing;
+	private int weekStartsOn;
 	
 	/* Interface */
 	
 	private JSGridPanel days;
-	private JButton previous, next;
+	private JSGridPanel dayLabels;
+	private JButton previousButton, nextButton, todayButton;
+	private JLabel titleLabel;
 	
 	/* Constructors */
 	
@@ -71,7 +77,10 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	}
 	
 	private class Event {
-		// TODO
+		Calendar date;
+		String title;
+		Color color;
+		boolean allDay;
 	}
 
 }
