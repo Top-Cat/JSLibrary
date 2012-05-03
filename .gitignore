@@ -130,3 +130,7 @@ src/js/testing/Sandbox.java
 src/js/testing/Sandbox.java
 
 bin/js/incomplete/JSCalendar$Event.class
+
+bin/js/incomplete/Sandbox.class
+
+src/js/incomplete/Sandbox.java
