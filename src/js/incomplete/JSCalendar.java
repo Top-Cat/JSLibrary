@@ -92,14 +92,14 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		
 		dayColors = new Color[35];
 		
-		int firstOfMonth = initialDate.get(Calendar.DAY_OF_WEEK);
+		int firstOfMonth = initialDate.get(Calendar.DAY_OF_WEEK) - 1;
 		
 		if (weekView) {
 			
 		} else {
 			days = new JSGridPanel(5, 7);
-			for (int i = 0; i < 35; i ++) {
-				dayColors[i] = Color.WHITE;
+			for (int i = 1; i <= 35; i ++) {
+				dayColors[i - 1] = Color.WHITE;
 				JPanel panel = new JPanel();
 				panel.setLayout(null);
 				panel.setBackground(Color.WHITE);
@@ -109,8 +109,8 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 					JLabel number = new JLabel("1");
 					number.setBounds(3, 3, 15, 15);
 					panel.add(number);
-				} else if (i > firstOfMonth && i <= getDaysInMonth(month, year) + 1) {
-					JLabel number = new JLabel(Integer.toString(i - firstOfMonth));
+				} else if (i > firstOfMonth && (i - firstOfMonth) < getDaysInMonth(month, year)) {
+					JLabel number = new JLabel(Integer.toString(i - firstOfMonth + 1));
 					number.setBounds(3, 3, 20, 15);
 					panel.add(number);
 				}
