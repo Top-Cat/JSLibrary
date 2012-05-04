@@ -32,7 +32,9 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Constructors */
 	
-	
+	public JSCalendar() {
+		
+	}
 	
 	/* Getters */
 	
@@ -44,7 +46,26 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Public Methods */
 	
+	public void update() {
+		
+	}
 	
+	public void goToDate(Calendar date) {
+		
+	}
+	
+	public void goToDate(int month, int year) {
+		Calendar date = Calendar.getInstance();
+		date.set(Calendar.MONTH, month);
+		date.set(Calendar.YEAR, year);
+		goToDate(date);
+	}
+	
+	public void goToMonth(int month) {
+		Calendar date = Calendar.getInstance();
+		date.set(Calendar.MONTH, month);
+		goToDate(date);
+	}
 	
 	/* Private Methods */
 	
