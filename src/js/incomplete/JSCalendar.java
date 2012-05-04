@@ -92,6 +92,8 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		
 		dayColors = new Color[35];
 		
+		int firstOfMonth = initialDate.get(Calendar.DAY_OF_WEEK);
+		
 		if (weekView) {
 			
 		} else {
@@ -99,8 +101,20 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 			for (int i = 0; i < 35; i ++) {
 				dayColors[i] = Color.WHITE;
 				JPanel panel = new JPanel();
+				panel.setLayout(null);
 				panel.setBackground(Color.WHITE);
 				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				
+				if (i == firstOfMonth) {
+					JLabel number = new JLabel("1");
+					number.setBounds(3, 3, 15, 15);
+					panel.add(number);
+				} else if (i > firstOfMonth && i <= getDaysInMonth(month, year) + 1) {
+					JLabel number = new JLabel(Integer.toString(i - firstOfMonth));
+					number.setBounds(3, 3, 20, 15);
+					panel.add(number);
+				}
+				
 				days.addComponent(panel);
 			}
 			add(days, BorderLayout.CENTER);
@@ -150,6 +164,17 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		c.set(Calendar.MONTH, month);
 		c.set(Calendar.YEAR, year);
 		return c;
+	}
+	
+	private int getDaysInMonth(int month, int year) {
+		if (month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11)
+			return 31;
+		else if (month != 1)
+			return 30;
+		else if (year % 4 == 0)
+			return 29;
+		else
+			return 28;
 	}
 	
 	/* Listeners */
