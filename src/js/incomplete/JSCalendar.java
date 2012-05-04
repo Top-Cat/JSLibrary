@@ -34,23 +34,26 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	/* Constructors */
 	
 	public JSCalendar() {
-		
+		this("", Calendar.getInstance(), false);
 	}
 	
 	public JSCalendar(String title) {
-		
+		this(title, Calendar.getInstance(), false);
 	}
 	
 	public JSCalendar(String title, int initialDay, int initialMonth, int initialYear) {
-		
+		this(title, getCalendar(initialDay, initialMonth, initialYear), true);
 	}
 	
-	public JSCalendar(String title, int initalMonth, int initialYear) {
-		
+	public JSCalendar(String title, int initialMonth, int initialYear) {
+		this(title, getCalendar(1, initialMonth, initialYear), false);
 	}
 	
 	public JSCalendar(String title, Calendar initialDate, boolean weekView) {
-		
+		this.year = initialDate.get(Calendar.YEAR);
+		this.month = initialDate.get(Calendar.MONTH);
+		this.day = initialDate.get(Calendar.DATE);
+		this.weekView = weekView;
 	}
 	
 	/* Getters */
@@ -88,7 +91,13 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Private Methods */
 	
-	
+	private static Calendar getCalendar(int date, int month, int year) {
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DATE, date);
+		c.set(Calendar.MONTH, month);
+		c.set(Calendar.YEAR, year);
+		return c;
+	}
 	
 	/* Listeners */
 	
