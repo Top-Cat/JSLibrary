@@ -1,6 +1,9 @@
 package js.incomplete;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -10,6 +13,7 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import js.JSGridPanel;
 import js.JSPanel;
@@ -54,6 +58,41 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		this.month = initialDate.get(Calendar.MONTH);
 		this.day = initialDate.get(Calendar.DATE);
 		this.weekView = weekView;
+		
+		System.out.println("Hi");
+		
+		setLayout(new BorderLayout());
+		
+		JPanel northPanel = new JPanel(new BorderLayout());
+				
+		JLabel dateLabel = new JLabel();
+		String monthName = initialDate.getDisplayName(Calendar.MONTH, Calendar.LONG, getLocale());
+		dateLabel.setText(" " + monthName + " " + year);
+		dateLabel.setFont(dateLabel.getFont().deriveFont(20f));
+		dateLabel.setBackground(new Color(170, 0, 0));
+		dateLabel.setForeground(Color.WHITE);
+		dateLabel.setOpaque(true);
+		dateLabel.setPreferredSize(new Dimension(getWidth(), 50));
+		northPanel.add(dateLabel, BorderLayout.NORTH);
+		
+		String[] dayNames = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+		dayLabels = new JSGridPanel(1, 7);
+		dayLabels.setPreferredSize(new Dimension(getWidth(), 20));
+		for (int i = 0; i < 7; i ++) {
+			JLabel label = new JLabel(dayNames[i], JLabel.CENTER);
+			dayLabels.addComponent(label);
+		}
+		northPanel.add(dayLabels, BorderLayout.CENTER);
+		
+		add(northPanel, BorderLayout.NORTH);
+		
+		if (weekView) {
+			
+		} else {
+			
+		}
+		
+		repaint();
 	}
 	
 	/* Getters */
