@@ -51,7 +51,9 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	}
 	
 	public void goToDate(Calendar date) {
-		
+		year = date.get(Calendar.YEAR);
+		month = date.get(Calendar.MONTH);
+		update();
 	}
 	
 	public void goToDate(int month, int year) {
