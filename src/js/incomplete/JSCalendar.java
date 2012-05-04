@@ -18,10 +18,11 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 
 	/* Variables */
 	
-	private int year, month;
+	private int year, month, day;
 	private Vector<Event> events;
 	private boolean todayShowing;
 	private int weekStartsOn;
+	private boolean weekView;
 	
 	/* Interface */
 	
@@ -33,6 +34,22 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	/* Constructors */
 	
 	public JSCalendar() {
+		
+	}
+	
+	public JSCalendar(String title) {
+		
+	}
+	
+	public JSCalendar(String title, int initialDay, int initialMonth, int initialYear) {
+		
+	}
+	
+	public JSCalendar(String title, int initalMonth, int initialYear) {
+		
+	}
+	
+	public JSCalendar(String title, Calendar initialDate, boolean weekView) {
 		
 	}
 	
