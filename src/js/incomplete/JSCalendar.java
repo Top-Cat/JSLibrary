@@ -3,7 +3,6 @@ package js.incomplete;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -11,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.util.Calendar;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,6 +27,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	private boolean todayShowing;
 	private int weekStartsOn;
 	private boolean weekView;
+	private Color[] dayColors;
 	
 	/* Interface */
 	
@@ -69,9 +70,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		String monthName = initialDate.getDisplayName(Calendar.MONTH, Calendar.LONG, getLocale());
 		dateLabel.setText(" " + monthName + " " + year);
 		dateLabel.setFont(dateLabel.getFont().deriveFont(20f));
-		dateLabel.setBackground(new Color(170, 0, 0));
-		dateLabel.setForeground(Color.WHITE);
-		dateLabel.setOpaque(true);
+	//	dateLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		dateLabel.setPreferredSize(new Dimension(getWidth(), 50));
 		northPanel.add(dateLabel, BorderLayout.NORTH);
 		
@@ -80,16 +79,31 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		dayLabels.setPreferredSize(new Dimension(getWidth(), 20));
 		for (int i = 0; i < 7; i ++) {
 			JLabel label = new JLabel(dayNames[i], JLabel.CENTER);
+			label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			dayLabels.addComponent(label);
 		}
 		northPanel.add(dayLabels, BorderLayout.CENTER);
 		
 		add(northPanel, BorderLayout.NORTH);
 		
+		JPanel southPanel = new JPanel();
+		southPanel.setPreferredSize(new Dimension(getWidth(), 30));
+		add(southPanel, BorderLayout.SOUTH);
+		
+		dayColors = new Color[35];
+		
 		if (weekView) {
 			
 		} else {
-			
+			days = new JSGridPanel(5, 7);
+			for (int i = 0; i < 35; i ++) {
+				dayColors[i] = Color.WHITE;
+				JPanel panel = new JPanel();
+				panel.setBackground(Color.WHITE);
+				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				days.addComponent(panel);
+			}
+			add(days, BorderLayout.CENTER);
 		}
 		
 		repaint();
