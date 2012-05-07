@@ -134,3 +134,5 @@ bin/js/incomplete/JSCalendar$Event.class
 bin/js/incomplete/Sandbox.class
 
 src/js/incomplete/Sandbox.java
+
+bin/js/incomplete/JSCalendar$DayPanel.class

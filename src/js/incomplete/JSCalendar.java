@@ -28,6 +28,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	private int weekStartsOn;
 	private boolean weekView;
 	private Color[] dayColors;
+	private DayPanel[] dayPanels;
 	
 	/* Interface */
 	
@@ -35,6 +36,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	private JSGridPanel dayLabels;
 	private JButton previousButton, nextButton, todayButton;
 	private JLabel titleLabel;
+	private JLabel dateLabel;
 	
 	/* Constructors */
 	
@@ -66,11 +68,10 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		
 		JPanel northPanel = new JPanel(new BorderLayout());
 				
-		JLabel dateLabel = new JLabel();
+		dateLabel = new JLabel();
 		String monthName = initialDate.getDisplayName(Calendar.MONTH, Calendar.LONG, getLocale());
 		dateLabel.setText(" " + monthName + " " + year);
 		dateLabel.setFont(dateLabel.getFont().deriveFont(20f));
-	//	dateLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		dateLabel.setPreferredSize(new Dimension(getWidth(), 50));
 		northPanel.add(dateLabel, BorderLayout.NORTH);
 		
@@ -90,7 +91,8 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		southPanel.setPreferredSize(new Dimension(getWidth(), 30));
 		add(southPanel, BorderLayout.SOUTH);
 		
-		dayColors = new Color[35];
+		dayColors = new Color[36];
+		dayPanels = new DayPanel[36];
 		
 		int firstOfMonth = initialDate.get(Calendar.DAY_OF_WEEK) - 1;
 		
@@ -99,23 +101,21 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		} else {
 			days = new JSGridPanel(5, 7);
 			for (int i = 1; i <= 35; i ++) {
-				dayColors[i - 1] = Color.WHITE;
-				JPanel panel = new JPanel();
-				panel.setLayout(null);
+				dayColors[i] = Color.WHITE;
+				DayPanel panel = new DayPanel(i);
 				panel.setBackground(Color.WHITE);
-				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				
-				if (i == firstOfMonth) {
-					JLabel number = new JLabel("1");
-					number.setBounds(3, 3, 15, 15);
-					panel.add(number);
-				} else if (i > firstOfMonth && (i - firstOfMonth) < getDaysInMonth(month, year)) {
-					JLabel number = new JLabel(Integer.toString(i - firstOfMonth + 1));
-					number.setBounds(3, 3, 20, 15);
-					panel.add(number);
+				if (i >= firstOfMonth && (i - firstOfMonth) < getDaysInMonth(month, year)) {
+					panel.setDate(i - firstOfMonth + 1);
+					days.addComponent(panel);
+					dayPanels[i] = panel;
+				} else {
+					panel = null;
+					JPanel empty = new JPanel();
+					empty.setBackground(getBackground());
+					empty.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+					days.addComponent(empty);
 				}
-				
-				days.addComponent(panel);
 			}
 			add(days, BorderLayout.CENTER);
 		}
@@ -134,7 +134,33 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	/* Public Methods */
 	
 	public void update() {
+		Calendar date = Calendar.getInstance();
+		date.set(Calendar.DATE, day);
+		date.set(Calendar.MONTH, month);
+		date.set(Calendar.YEAR, year);
 		
+		dateLabel.setText(" " + date.getDisplayName(Calendar.MONTH, Calendar.LONG, getLocale()) + " " + year);
+		
+		int firstOfMonth = date.get(Calendar.DAY_OF_WEEK) - 1;
+		
+		for (int i = 1; i <= 35; i ++) {
+			DayPanel panel = dayPanels[i];
+			
+			if (panel != null) {
+				panel.setBackground(dayColors[i]);
+				
+				if (i >= firstOfMonth && (i - firstOfMonth) < getDaysInMonth(month, year)) {
+					panel.setDate(i - firstOfMonth + 1);
+					dayPanels[i] = panel;
+				} else {
+					panel = null;
+					JPanel empty = new JPanel();
+					empty.setBackground(getBackground());
+					empty.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				}
+			}
+		}
+		repaint();
 	}
 	
 	public void goToDate(Calendar date) {
@@ -201,6 +227,24 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 
 	public void actionPerformed(ActionEvent e) {
 		
+	}
+	
+	private class DayPanel extends JPanel {
+		JLabel number;
+		int date;
+		
+		DayPanel(int date) {
+			setLayout(null);
+			setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			number = new JLabel(Integer.toString(date));
+			number.setBounds(5, 5, 25, 15);
+			add(number);
+		}
+		
+		void setDate(int date) {
+			this.date = date;
+			number.setText(Integer.toString(date));
+		}
 	}
 	
 	private class Event {
