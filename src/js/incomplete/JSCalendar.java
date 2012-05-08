@@ -29,6 +29,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	private boolean weekView;
 	private Color[] dayColors;
 	private DayPanel[] dayPanels;
+	private Color emptyColor;
 	
 	/* Interface */
 	
@@ -62,7 +63,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		this.day = initialDate.get(Calendar.DATE);
 		this.weekView = weekView;
 		
-		System.out.println("Hi");
+		this.emptyColor = new Color(220, 220, 220);
 		
 		setLayout(new BorderLayout());
 		
@@ -112,7 +113,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 				} else {
 					panel = null;
 					JPanel empty = new JPanel();
-					empty.setBackground(getBackground());
+					empty.setBackground(emptyColor);
 					empty.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 					days.addComponent(empty);
 				}
@@ -125,11 +126,15 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Getters */
 	
-	
+	public Color getBlankDayColor() {
+		return emptyColor;
+	}
 	
 	/* Setters */
 	
-	
+	public void setBlankDayColor(Color c) {
+		emptyColor = c;
+	}
 	
 	/* Public Methods */
 	
@@ -155,7 +160,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 				} else {
 					panel = null;
 					JPanel empty = new JPanel();
-					empty.setBackground(getBackground());
+					empty.setBackground(emptyColor);
 					empty.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				}
 			}
