@@ -99,6 +99,9 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		
 		int firstOfMonth = initialDate.get(Calendar.DAY_OF_WEEK) - 1;
 		
+		Calendar now = Calendar.getInstance();
+		int today = now.get(Calendar.DATE);
+		
 		if (weekView) {
 			
 		} else {
@@ -111,6 +114,8 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 				
 				if (i >= firstOfMonth && (i - firstOfMonth) < getDaysInMonth(month, year)) {
 					panel.setDate(i - firstOfMonth + 1);
+					if ((i - firstOfMonth + 1) == today && now.get(Calendar.MONTH) == month)
+						panel.number.setForeground(new Color(64, 128, 255));
 					days.addComponent(panel);
 					dayPanels[i] = panel;
 				} else {
@@ -159,6 +164,9 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		
 		int firstOfMonth = date.get(Calendar.DAY_OF_WEEK) - 1;
 		
+		Calendar now = Calendar.getInstance();
+		int today = now.get(Calendar.DATE);
+		
 		for (int i = 1; i <= 35; i ++) {
 			DayPanel panel = dayPanels[i];
 			
@@ -168,6 +176,8 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 				if (i >= firstOfMonth && (i - firstOfMonth) < getDaysInMonth(month, year)) {
 					panel.setDate(i - firstOfMonth + 1);
 					panel.number.setForeground(labelColors[i - firstOfMonth + 1]);
+					if ((i - firstOfMonth + 1) == today && now.get(Calendar.MONTH) == month)
+						panel.number.setForeground(new Color(64, 128, 255));
 					dayPanels[i] = panel;
 				} else {
 					panel = null;
