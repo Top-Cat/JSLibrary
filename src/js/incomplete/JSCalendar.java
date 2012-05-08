@@ -154,6 +154,11 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Public Methods */
 	
+	public void addEvent(Calendar date, String title, Color color) {
+		Event event = new Event(date, title, color);
+		events.add(event);
+	}
+	
 	public void update() {
 		Calendar date = Calendar.getInstance();
 		date.set(Calendar.DATE, day);
@@ -278,7 +283,12 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		Calendar date;
 		String title;
 		Color color;
-		boolean allDay;
+		
+		Event(Calendar date, String title, Color color) {
+			this.date = date;
+			this.title = title;
+			this.color = color;
+		}
 	}
 
 }
