@@ -132,6 +132,10 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Setters */
 	
+	public void setDayColor(int day, Color c) {
+		dayColors[day] = c;
+	}
+	
 	public void setBlankDayColor(Color c) {
 		emptyColor = c;
 	}
@@ -152,7 +156,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 			DayPanel panel = dayPanels[i];
 			
 			if (panel != null) {
-				panel.setBackground(dayColors[i]);
+				panel.setBackground(dayColors[i - firstOfMonth + 1]);
 				
 				if (i >= firstOfMonth && (i - firstOfMonth) < getDaysInMonth(month, year)) {
 					panel.setDate(i - firstOfMonth + 1);
