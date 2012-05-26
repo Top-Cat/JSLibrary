@@ -136,3 +136,5 @@ bin/js/incomplete/Sandbox.class
 src/js/incomplete/Sandbox.java
 
 bin/js/incomplete/JSCalendar$DayPanel.class
+
+bin/js/incomplete/JSDateUtil.class
