@@ -318,7 +318,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 				event1.setFont(event1.getFont().deriveFont(12f));
 				event1.setBackground(e.color);
 				event1.setOpaque(true);
-				event1.setBounds(1, 25, 100, 15);
+				event1.setBounds(1, 25, 130, 15);
 				this.add(event1);
 				this.repaint();
 			} else if (event2 == null) {
@@ -326,14 +326,14 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 				event2.setFont(event2.getFont().deriveFont(12f));
 				event2.setBackground(e.color);
 				event2.setOpaque(true);
-				event2.setBounds(1, 42, 100, 15);
+				event2.setBounds(1, 42, 130, 15);
 				this.add(event2);
 				this.repaint();
 			} else if (event3 == null) {
 				event3 = new JLabel(e.title);
 				event3.setFont(event3.getFont().deriveFont(12f));
 				event3.setBackground(e.color);
-				event3.setBounds(1, 59, 100, 15);
+				event3.setBounds(1, 59, 130, 15);
 				event3.setOpaque(true);
 				this.add(event3);
 				this.repaint();
