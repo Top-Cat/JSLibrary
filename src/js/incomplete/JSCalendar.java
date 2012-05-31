@@ -36,6 +36,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	private JSGridPanel days;
 	private JSGridPanel dayLabels;
+	private JPanel northPanel;
 	private JButton previousButton, nextButton, todayButton;
 	private JLabel titleLabel;
 	private JLabel dateLabel;
@@ -68,7 +69,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		
 		setLayout(new BorderLayout());
 		
-		JPanel northPanel = new JPanel(new BorderLayout());
+		northPanel = new JPanel(new BorderLayout());
 				
 		dateLabel = new JLabel();
 		String monthName = initialDate.getDisplayName(Calendar.MONTH, Calendar.LONG, getLocale());
@@ -81,7 +82,12 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		dayLabels = new JSGridPanel(1, 7);
 		dayLabels.setPreferredSize(new Dimension(getWidth(), 20));
 		for (int i = 0; i < 7; i ++) {
-			JLabel label = new JLabel(dayNames[i], JLabel.CENTER);
+			JLabel label;
+			if (getWidth() > 510) {
+				label = new JLabel(dayNames[i], JLabel.CENTER);
+			} else {
+				label = new JLabel(dayNames[i].substring(0, 3), JLabel.CENTER);
+			}
 			label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			dayLabels.addComponent(label);
 		}
@@ -171,6 +177,21 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		
 		Calendar now = Calendar.getInstance();
 		int today = now.get(Calendar.DATE);
+		
+		String[] dayNames = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+		dayLabels = new JSGridPanel(1, 7);
+		dayLabels.setPreferredSize(new Dimension(getWidth(), 20));
+		for (int i = 0; i < 7; i ++) {
+			JLabel label;
+			if (getWidth() > 510) {
+				label = new JLabel(dayNames[i], JLabel.CENTER);
+			} else {
+				label = new JLabel(dayNames[i].substring(0, 3), JLabel.CENTER);
+			}
+			label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			dayLabels.addComponent(label);
+		}
+		northPanel.add(dayLabels, BorderLayout.CENTER);
 		
 		for (int i = 1; i <= 35; i ++) {
 			DayPanel panel = dayPanels[i];
