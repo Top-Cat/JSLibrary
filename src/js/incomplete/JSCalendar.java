@@ -107,6 +107,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		
 		Calendar now = Calendar.getInstance();
 		int today = now.get(Calendar.DATE);
+		events = new Vector<Event>();
 		
 		if (weekView) {
 			
@@ -122,6 +123,11 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 					panel.setDate(i - firstOfMonth + 1);
 					if ((i - firstOfMonth + 1) == today && now.get(Calendar.MONTH) == month)
 						panel.number.setForeground(new Color(64, 128, 255));
+					for (Event e : events) {
+						if (e.date.get(Calendar.YEAR) == year && e.date.get(Calendar.MONTH) == month && e.date.get(Calendar.DAY_OF_MONTH) == (i - firstOfMonth + 1)) {
+							panel.addEvent(e);
+						}
+					}
 					days.addComponent(panel);
 					dayPanels[i] = panel;
 				} else {
@@ -134,7 +140,6 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 			}
 			add(days, BorderLayout.CENTER);
 		}
-		
 		repaint();
 	}
 	
@@ -193,26 +198,33 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		}
 		northPanel.add(dayLabels, BorderLayout.CENTER);
 		
+		days = new JSGridPanel(5, 7);
 		for (int i = 1; i <= 35; i ++) {
-			DayPanel panel = dayPanels[i];
+			dayColors[i] = Color.WHITE;
+			labelColors[i] = Color.black;
+			DayPanel panel = new DayPanel(i);
+			panel.setBackground(Color.WHITE);
 			
-			if (panel != null) {
-				panel.setBackground(dayColors[i - firstOfMonth + 1]);
-				
-				if (i >= firstOfMonth && (i - firstOfMonth) < getDaysInMonth(month, year)) {
-					panel.setDate(i - firstOfMonth + 1);
-					panel.number.setForeground(labelColors[i - firstOfMonth + 1]);
-					if ((i - firstOfMonth + 1) == today && now.get(Calendar.MONTH) == month)
-						panel.number.setForeground(new Color(64, 128, 255));
-					dayPanels[i] = panel;
-				} else {
-					panel = null;
-					JPanel empty = new JPanel();
-					empty.setBackground(emptyColor);
-					empty.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			if (i >= firstOfMonth && (i - firstOfMonth) < getDaysInMonth(month, year)) {
+				panel.setDate(i - firstOfMonth + 1);
+				if ((i - firstOfMonth + 1) == today && now.get(Calendar.MONTH) == month)
+					panel.number.setForeground(new Color(64, 128, 255));
+				for (Event e : events) {
+					if (e.date.get(Calendar.YEAR) == year && e.date.get(Calendar.MONTH) == month && e.date.get(Calendar.DAY_OF_MONTH) == (i - firstOfMonth + 1)) {
+						panel.addEvent(e);
+					}
 				}
+				days.addComponent(panel);
+				dayPanels[i] = panel;
+			} else {
+				panel = null;
+				JPanel empty = new JPanel();
+				empty.setBackground(emptyColor);
+				empty.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				days.addComponent(empty);
 			}
 		}
+		add(days, BorderLayout.CENTER);
 		repaint();
 	}
 	
@@ -284,6 +296,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	private class DayPanel extends JPanel {
 		JLabel number;
+		JLabel event1, event2, event3;		
 		int date;
 		
 		DayPanel(int date) {
@@ -297,6 +310,34 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		void setDate(int date) {
 			this.date = date;
 			number.setText(Integer.toString(date));
+		}
+		
+		void addEvent(Event e) {
+			if (event1 == null) {
+				event1 = new JLabel(e.title);
+				event1.setFont(event1.getFont().deriveFont(12f));
+				event1.setBackground(e.color);
+				event1.setOpaque(true);
+				event1.setBounds(1, 25, 100, 15);
+				this.add(event1);
+				this.repaint();
+			} else if (event2 == null) {
+				event2 = new JLabel(e.title);
+				event2.setFont(event2.getFont().deriveFont(12f));
+				event2.setBackground(e.color);
+				event2.setOpaque(true);
+				event2.setBounds(1, 42, 100, 15);
+				this.add(event2);
+				this.repaint();
+			} else if (event3 == null) {
+				event3 = new JLabel(e.title);
+				event3.setFont(event3.getFont().deriveFont(12f));
+				event3.setBackground(e.color);
+				event3.setBounds(1, 59, 100, 15);
+				event3.setOpaque(true);
+				this.add(event3);
+				this.repaint();
+			}
 		}
 	}
 	
