@@ -69,6 +69,23 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		
 		setLayout(new BorderLayout());
 		
+		JPanel buttonsPanel = new JPanel(new BorderLayout());
+		previousButton = new JButton("◀");
+		previousButton.addActionListener(this);
+		previousButton.setPreferredSize(new Dimension(50, 30));
+		buttonsPanel.add(previousButton, BorderLayout.WEST);
+		
+		nextButton = new JButton("▶");
+		nextButton.addActionListener(this);
+		nextButton.setPreferredSize(new Dimension(50, 30));
+		buttonsPanel.add(nextButton, BorderLayout.EAST);
+		
+		todayButton = new JButton("Today");
+		todayButton.addActionListener(this);
+		buttonsPanel.add(todayButton, BorderLayout.CENTER);
+		
+		JPanel dateAndButtons = new JPanel(new BorderLayout());
+		
 		northPanel = new JPanel(new BorderLayout());
 				
 		dateLabel = new JLabel();
@@ -76,7 +93,11 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		dateLabel.setText(" " + monthName + " " + year);
 		dateLabel.setFont(dateLabel.getFont().deriveFont(20f));
 		dateLabel.setPreferredSize(new Dimension(getWidth(), 50));
-		northPanel.add(dateLabel, BorderLayout.NORTH);
+		
+		dateAndButtons.add(buttonsPanel, BorderLayout.EAST);
+		dateAndButtons.add(dateLabel, BorderLayout.CENTER);
+		
+		northPanel.add(dateAndButtons, BorderLayout.NORTH);
 		
 		String[] dayNames = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 		dayLabels = new JSGridPanel(1, 7);
@@ -198,6 +219,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		}
 		northPanel.add(dayLabels, BorderLayout.CENTER);
 		
+		remove(days);
 		days = new JSGridPanel(5, 7);
 		for (int i = 1; i <= 35; i ++) {
 			dayColors[i] = Color.WHITE;
@@ -291,7 +313,26 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource() == previousButton) {
+			month --;
+			if (month < Calendar.JANUARY) {
+				year --;
+				month = Calendar.DECEMBER;
+			}
+			update();
+		} else if (e.getSource() == nextButton) {
+			month ++;
+			if (month > Calendar.DECEMBER) {
+				year ++;
+				month = Calendar.JANUARY;
+			}
+			update();
+		} else if (e.getSource() == todayButton) {
+			Calendar today = Calendar.getInstance();
+			month = today.get(Calendar.MONTH);
+			year = today.get(Calendar.YEAR);
+			update();
+		}
 	}
 	
 	private class DayPanel extends JPanel {

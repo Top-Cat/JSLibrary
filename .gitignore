@@ -138,3 +138,5 @@ src/js/incomplete/Sandbox.java
 bin/js/incomplete/JSCalendar$DayPanel.class
 
 bin/js/incomplete/JSDateUtil.class
+
+.settings/org.eclipse.core.resources.prefs
