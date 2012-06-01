@@ -31,6 +31,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	private Color[] labelColors;
 	private DayPanel[] dayPanels;
 	private Color emptyColor;
+	private int selectedDay;
 	
 	/* Interface */
 	
@@ -144,6 +145,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 				labelColors[i] = Color.black;
 				DayPanel panel = new DayPanel(i);
 				panel.setBackground(Color.WHITE);
+				panel.addMouseListener(this);
 				
 				if (((firstOfMonth != 0 && i >= firstOfMonth) || (firstOfMonth == 0 && i > 6)) && ((i - firstOfMonth) < getDaysInMonth(month, year)
 						|| (firstOfMonth == 0 && (i - firstOfMonth) < getDaysInMonth(month, year) + 7))) {
@@ -177,6 +179,10 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	public Color getBlankDayColor() {
 		return emptyColor;
+	}
+	
+	public int getSelectedDay() {
+		return selectedDay;
 	}
 	
 	/* Setters */
@@ -241,6 +247,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 			labelColors[i] = Color.black;
 			DayPanel panel = new DayPanel(i);
 			panel.setBackground(Color.WHITE);
+			panel.addMouseListener(this);
 			
 			if (((firstOfMonth != 0 && i >= firstOfMonth) || (firstOfMonth == 0 && i > 6)) && ((i - firstOfMonth) < getDaysInMonth(month, year)
 					|| (firstOfMonth == 0 && (i - firstOfMonth) < getDaysInMonth(month, year) + 7))) {
@@ -318,7 +325,12 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	/* Listeners */
 	
 	public void mouseClicked(MouseEvent e) {
-		
+		for (DayPanel p : dayPanels) {
+			if (e.getSource() == p) {
+				selectedDay = p.date;
+			}
+		}
+		dispatchEvent(new MouseEvent(this, e.getID(), e.getWhen(), e.getModifiers(), e.getX(), e.getY(), e.getClickCount(), e.isPopupTrigger()));
 	}
 
 	public void mouseEntered(MouseEvent e) {
