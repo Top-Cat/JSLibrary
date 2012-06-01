@@ -251,8 +251,14 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 				if ((i - firstOfMonth + 1) == today && now.get(Calendar.MONTH) == month)
 					panel.number.setForeground(new Color(64, 128, 255));
 				for (Event e : events) {
-					if (e.date.get(Calendar.YEAR) == year && e.date.get(Calendar.MONTH) == month && e.date.get(Calendar.DAY_OF_MONTH) == (i - firstOfMonth + 1)) {
-						panel.addEvent(e);
+					if (rows == 5 || firstOfMonth == 6) {
+						if (e.date.get(Calendar.YEAR) == year && e.date.get(Calendar.MONTH) == month && e.date.get(Calendar.DAY_OF_MONTH) == (i - firstOfMonth + 1)) {
+							panel.addEvent(e);
+						}
+					} else {
+						if (e.date.get(Calendar.YEAR) == year && e.date.get(Calendar.MONTH) == month && e.date.get(Calendar.DAY_OF_MONTH) == (i - firstOfMonth - 6)) {
+							panel.addEvent(e);
+						}
 					}
 				}
 				days.addComponent(panel);
