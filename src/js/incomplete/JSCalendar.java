@@ -50,10 +50,21 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		this(Calendar.getInstance());
 	}
 	
+	/**
+	 * Creates a new JSCalendar with the initial view set to the specified month of the specified year.
+	 * 
+	 * @param initialMonth the integer index of the month to set as the initial view (one of <code>Calendar.JANUARY</code>, <code>Calendar.FEBRUARY</code>, etc.)
+	 * @param initialYear the integer year to set as the initial view.
+	 */
 	public JSCalendar(int initialMonth, int initialYear) {
 		this(getCalendar(1, initialMonth, initialYear));
 	}
 	
+	/**
+	 * Creates a new JSCalendar with the initial view set to the specified date.
+	 * 
+	 * @param initialDate a Calendar object representing the date to show as the initial view.
+	 */
 	public JSCalendar(Calendar initialDate) {
 		this.year = initialDate.get(Calendar.YEAR);
 		this.month = initialDate.get(Calendar.MONTH);
