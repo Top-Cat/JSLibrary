@@ -26,7 +26,6 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	private Vector<Event> events;
 	private boolean todayShowing;
 	private int weekStartsOn;
-	private boolean weekView;
 	private Color[] dayColors;
 	private Color[] labelColors;
 	private DayPanel[] dayPanels;
@@ -45,26 +44,25 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	/* Constructors */
 	
 	public JSCalendar() {
-		this("", Calendar.getInstance(), false);
+		this("", Calendar.getInstance());
 	}
 	
 	public JSCalendar(String title) {
-		this(title, Calendar.getInstance(), false);
+		this(title, Calendar.getInstance());
 	}
 	
 	public JSCalendar(String title, int initialDay, int initialMonth, int initialYear) {
-		this(title, getCalendar(initialDay, initialMonth, initialYear), true);
+		this(title, getCalendar(initialDay, initialMonth, initialYear));
 	}
 	
 	public JSCalendar(String title, int initialMonth, int initialYear) {
-		this(title, getCalendar(1, initialMonth, initialYear), false);
+		this(title, getCalendar(1, initialMonth, initialYear));
 	}
 	
-	public JSCalendar(String title, Calendar initialDate, boolean weekView) {
+	public JSCalendar(String title, Calendar initialDate) {
 		this.year = initialDate.get(Calendar.YEAR);
 		this.month = initialDate.get(Calendar.MONTH);
 		this.day = initialDate.get(Calendar.DATE);
-		this.weekView = weekView;
 		
 		this.emptyColor = new Color(220, 220, 220);
 		
@@ -130,48 +128,45 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		int today = now.get(Calendar.DATE);
 		events = new Vector<Event>();
 		
-		if (weekView) {
+		int rows = ((firstOfMonth == 6 && getDaysInMonth(month, year) == 31 || (firstOfMonth == 0 && getDaysInMonth(month, year) >= 30))) ? 6 : 5;
+		
+		days = new JSGridPanel(rows, 7);
+		dayColors = new Color[rows * 7 + 1];
+		labelColors = new Color[rows * 7 + 1];
+		dayPanels = new DayPanel[rows * 7 + 1];
+		
+		for (int i = 1; i <= (rows * 7); i ++) {
+			dayColors[i] = Color.WHITE;
+			labelColors[i] = Color.black;
+			DayPanel panel = new DayPanel(i);
+			panel.setBackground(Color.WHITE);
+			panel.addMouseListener(this);
 			
-		} else {
-			int rows = ((firstOfMonth == 6 && getDaysInMonth(month, year) == 31 || (firstOfMonth == 0 && getDaysInMonth(month, year) >= 30))) ? 6 : 5;
-			
-			days = new JSGridPanel(rows, 7);
-			dayColors = new Color[rows * 7 + 1];
-			labelColors = new Color[rows * 7 + 1];
-			dayPanels = new DayPanel[rows * 7 + 1];
-			
-			for (int i = 1; i <= (rows * 7); i ++) {
-				dayColors[i] = Color.WHITE;
-				labelColors[i] = Color.black;
-				DayPanel panel = new DayPanel(i);
-				panel.setBackground(Color.WHITE);
-				panel.addMouseListener(this);
-				
-				if (((firstOfMonth != 0 && i >= firstOfMonth) || (firstOfMonth == 0 && i > 6)) && ((i - firstOfMonth) < getDaysInMonth(month, year)
-						|| (firstOfMonth == 0 && (i - firstOfMonth) < getDaysInMonth(month, year) + 7))) {
-					if (rows == 6 && firstOfMonth == 0)
-						panel.setDate(i - firstOfMonth - 6);
-					else
-						panel.setDate(i - firstOfMonth + 1);
-					if ((i - firstOfMonth + 1) == today && now.get(Calendar.MONTH) == month)
-						panel.number.setForeground(new Color(64, 128, 255));
-					for (Event e : events) {
-						if (e.date.get(Calendar.YEAR) == year && e.date.get(Calendar.MONTH) == month && e.date.get(Calendar.DAY_OF_MONTH) == (i - firstOfMonth + 1)) {
-							panel.addEvent(e);
-						}
+			if (((firstOfMonth != 0 && i >= firstOfMonth) || (firstOfMonth == 0 && i > 6)) && ((i - firstOfMonth) < getDaysInMonth(month, year)
+					|| (firstOfMonth == 0 && (i - firstOfMonth) < getDaysInMonth(month, year) + 7))) {
+				if (rows == 6 && firstOfMonth == 0)
+					panel.setDate(i - firstOfMonth - 6);
+				else
+					panel.setDate(i - firstOfMonth + 1);
+				if ((i - firstOfMonth + 1) == today && now.get(Calendar.MONTH) == month)
+					panel.number.setForeground(new Color(64, 128, 255));
+				for (Event e : events) {
+					if (e.date.get(Calendar.YEAR) == year && e.date.get(Calendar.MONTH) == month && e.date.get(Calendar.DAY_OF_MONTH) == (i - firstOfMonth + 1)) {
+						panel.addEvent(e);
 					}
-					days.addComponent(panel);
-					dayPanels[i] = panel;
-				} else {
-					panel = null;
-					JPanel empty = new JPanel();
-					empty.setBackground(emptyColor);
-					empty.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-					days.addComponent(empty);
 				}
+				days.addComponent(panel);
+				dayPanels[i] = panel;
+			} else {
+				panel = null;
+				JPanel empty = new JPanel();
+				empty.setBackground(emptyColor);
+				empty.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				days.addComponent(empty);
 			}
-			add(days, BorderLayout.CENTER);
 		}
+		add(days, BorderLayout.CENTER);
+		
 		repaint();
 	}
 	
