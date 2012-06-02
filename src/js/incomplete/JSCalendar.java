@@ -252,11 +252,21 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Public Methods */
 	
+	/**
+	 * Adds an event to the specified date to be displayed on the calendar.
+	 * 
+	 * @param date the Calendar object representing the date to add the event to
+	 * @param title the title of the event to be displayed on the calendar
+	 * @param color the background color of the event when displayed
+	 */
 	public void addEvent(Calendar date, String title, Color color) {
 		Event event = new Event(date, title, color);
 		events.add(event);
 	}
 	
+	/**
+	 * Updates the calendar to display any changes made since the last refresh occurred.
+	 */
 	public void update() {
 		Calendar date = Calendar.getInstance();
 		date.set(Calendar.DATE, day);
@@ -333,12 +343,23 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		repaint();
 	}
 	
+	/**
+	 * Changes the calendar view to display the specified date.
+	 * 
+	 * @param date the Calendar object representing the date to show
+	 */
 	public void goToDate(Calendar date) {
 		year = date.get(Calendar.YEAR);
 		month = date.get(Calendar.MONTH);
 		update();
 	}
 	
+	/**
+	 * Changes the calendar view to display the specified date.
+	 * 
+	 * @param month the integer index of the month to display (one of <code>Calendar.JANUARY</code>, <code>Calendar.FEBRUARY</code>, etc.)
+	 * @param year the year to display
+	 */
 	public void goToDate(int month, int year) {
 		Calendar date = Calendar.getInstance();
 		date.set(Calendar.MONTH, month);
@@ -346,6 +367,11 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		goToDate(date);
 	}
 	
+	/**
+	 * Changes the calendar view to display the specified month of the year currently being displayed.
+	 * 
+	 * @param month the integer index of the month to display (one of <code>Calendar.JANUARY</code>, <code>Calendar.FEBRUARY</code>, etc.)
+	 */
 	public void goToMonth(int month) {
 		Calendar date = Calendar.getInstance();
 		date.set(Calendar.MONTH, month);
