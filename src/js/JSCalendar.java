@@ -1,4 +1,4 @@
-package js.incomplete;
+package js;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,8 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import js.JSGridPanel;
-import js.JSPanel;
+import js.incomplete.JSDateUtil;
 
 /**
  * <code>JSCalendar</code> provides a simple way to display a calendar on screen and allows 'events' to be added and displayed.
