@@ -419,7 +419,7 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		}
 	}
 	
-	private class Event {
+	public class Event {
 		Calendar date;
 		String title;
 		Color color;
