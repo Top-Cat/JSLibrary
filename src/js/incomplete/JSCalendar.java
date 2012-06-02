@@ -178,14 +178,30 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Getters */
 	
+	/**
+	 * Returns the color being used as the blank days on the calendar, i.e. the grid squares before the 1st and after the last day of the month.
+	 * 
+	 * @return a Color object representing the color of the blank days.
+	 */
 	public Color getBlankDayColor() {
 		return emptyColor;
 	}
 	
+	/**
+	 * Returns the day number of the grid square most recently clicked by the user, i.e. the value that would represent <code>Calendar.DAY_OF_MONTH</code>.
+	 * 
+	 * @return an integer representing the day of the month that was clicked.
+	 */
 	public int getSelectedDay() {
 		return selectedDay;
 	}
 	
+	/**
+	 * Returns an array of all the events that have been added to the specified date.
+	 * 
+	 * @param date the date to retrieve the events for.
+	 * @return an array of Event objects representing all the events from the specified date.
+	 */
 	public Event[] getEventsForDate(Calendar date) {
 		Vector<Event> temp = new Vector<Event>();
 		for (Event e : events) {
@@ -193,11 +209,14 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 				temp.add(e);
 			}
 		}
-		Event[] array = new Event[temp.size()];
-		for (int i = 0; i < temp.size(); i ++) {
-			array[i] = temp.get(i);
-		}
-		return array;
+		if (temp.size() > 0) {
+			Event[] array = new Event[temp.size()];
+			for (int i = 0; i < temp.size(); i ++) {
+				array[i] = temp.get(i);
+			}
+			return array;
+		} else
+			return null;
 	}
 	
 	/* Setters */
