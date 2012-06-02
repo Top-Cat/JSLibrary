@@ -18,4 +18,10 @@ public class JSDateUtil {
 		}
 	}
 	
+	public static boolean isSameDate(Calendar a, Calendar b) {
+		return (a.get(Calendar.YEAR) == b.get(Calendar.YEAR)
+				&& a.get(Calendar.MONTH) == b.get(Calendar.MONTH)
+				&& a.get(Calendar.DAY_OF_MONTH) == b.get(Calendar.DAY_OF_MONTH));
+	}
+	
 }
