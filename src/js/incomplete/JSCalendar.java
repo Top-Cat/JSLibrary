@@ -43,23 +43,18 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Constructors */
 	
+	/**
+	 * Creates a new JSCalendar with today's date as the initial view.
+	 */
 	public JSCalendar() {
-		this("", Calendar.getInstance());
+		this(Calendar.getInstance());
 	}
 	
-	public JSCalendar(String title) {
-		this(title, Calendar.getInstance());
+	public JSCalendar(int initialMonth, int initialYear) {
+		this(getCalendar(1, initialMonth, initialYear));
 	}
 	
-	public JSCalendar(String title, int initialDay, int initialMonth, int initialYear) {
-		this(title, getCalendar(initialDay, initialMonth, initialYear));
-	}
-	
-	public JSCalendar(String title, int initialMonth, int initialYear) {
-		this(title, getCalendar(1, initialMonth, initialYear));
-	}
-	
-	public JSCalendar(String title, Calendar initialDate) {
+	public JSCalendar(Calendar initialDate) {
 		this.year = initialDate.get(Calendar.YEAR);
 		this.month = initialDate.get(Calendar.MONTH);
 		this.day = initialDate.get(Calendar.DATE);
