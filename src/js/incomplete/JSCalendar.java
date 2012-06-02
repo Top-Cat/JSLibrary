@@ -18,6 +18,9 @@ import javax.swing.JPanel;
 import js.JSGridPanel;
 import js.JSPanel;
 
+/**
+ * <code>JSCalendar</code> provides a simple way to display a calendar on screen and allows 'events' to be added and displayed.
+ */
 public class JSCalendar extends JSPanel implements ActionListener, MouseListener {
 
 	/* Variables */
