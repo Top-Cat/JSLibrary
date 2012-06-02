@@ -185,6 +185,20 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		return selectedDay;
 	}
 	
+	public Event[] getEventsForDate(Calendar date) {
+		Vector<Event> temp = new Vector<Event>();
+		for (Event e : events) {
+			if (JSDateUtil.isSameDate(e.date, date)) {
+				temp.add(e);
+			}
+		}
+		Event[] array = new Event[temp.size()];
+		for (int i = 0; i < temp.size(); i ++) {
+			array[i] = temp.get(i);
+		}
+		return array;
+	}
+	
 	/* Setters */
 	
 	public void setDayColor(int day, Color c) {
