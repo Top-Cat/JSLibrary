@@ -496,10 +496,13 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 		}
 	}
 	
+	/**
+	 * Represents an event displayed on a <code>JSCalendar</code>.
+	 */
 	public class Event {
-		Calendar date;
-		String title;
-		Color color;
+		public Calendar date;
+		public String title;
+		public Color color;
 		
 		Event(Calendar date, String title, Color color) {
 			this.date = date;
