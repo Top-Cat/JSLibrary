@@ -221,14 +221,31 @@ public class JSCalendar extends JSPanel implements ActionListener, MouseListener
 	
 	/* Setters */
 	
+	/**
+	 * Sets the background color of the specified day's grid square
+	 * 
+	 * @param day the integer representing the value of <code>Calendar.DAY_OF_MONTH</code> for the day to change the color of.
+	 * @param c the color to set the day's background to.
+	 */
 	public void setDayColor(int day, Color c) {
 		dayColors[day] = c;
 	}
 	
+	/**
+	 * Sets the color of the day number label of the specified day's grid square
+	 * 
+	 * @param day the integer representing the value of <code>Calendar.DAY_OF_MONTH</code> for the day to change the color of.
+	 * @param c the color to set the day's label to.
+	 */
 	public void setDayLabelColor(int day, Color c) {
 		labelColors[day] = c;
 	}
 	
+	/**
+	 * Sets the color of blank grid squares, i.e. those before the 1st and after the last day of the month.
+	 * 
+	 * @param c the color to set the background of blank grid squares to.
+	 */
 	public void setBlankDayColor(Color c) {
 		emptyColor = c;
 	}
