@@ -21,14 +21,29 @@ public class JSDateUtil {
 	public static String getRelativeTime(Calendar date) {
 		Calendar now = Calendar.getInstance();
 		long diff = now.getTimeInMillis() - date.getTimeInMillis();
-		if (diff >= 86400000) {
+		if (Math.abs(diff) >= 86400000) {
 			return getRelativeDate(date);
-		} else if (diff >= 3600000) {
-			// return in hours
-		} else if (diff >= 60000) {
-			// return in minutes
-		} else if (diff >= 1000) {
-			// return in seconds
+		} else if (Math.abs(diff) >= 3600000) {
+			long hours = diff / 3600000;
+			if (hours < 0) {
+				return "in " + Math.abs(hours) + " hours";
+			} else {
+				return hours + " hours ago";
+			}
+		} else if (Math.abs(diff) >= 60000) {
+			long mins = diff / 60000;
+			if (mins < 0) {
+				return "in " + Math.abs(mins) + " minutes";
+			} else {
+				return mins + " minutes ago";
+			}
+		} else if (Math.abs(diff) >= 1000) {
+			long secs = diff / 1000;
+			if (secs < 0) {
+				return "in " + Math.abs(secs) + " seconds";
+			} else {
+				return secs + " secs ago";
+			}
 		} else {
 			return "now";
 		}
