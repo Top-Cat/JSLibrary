@@ -26,21 +26,21 @@ public class JSDateUtil {
 		} else if (Math.abs(diff) >= 3600000) {
 			long hours = diff / 3600000;
 			if (hours < 0) {
-				return "in " + Math.abs(hours) + " hours";
+				return "in " + (Math.abs(hours) + 1) + " hours";
 			} else {
 				return hours + " hours ago";
 			}
 		} else if (Math.abs(diff) >= 60000) {
 			long mins = diff / 60000;
 			if (mins < 0) {
-				return "in " + Math.abs(mins) + " minutes";
+				return "in " + (Math.abs(mins) + 1) + " minutes";
 			} else {
 				return mins + " minutes ago";
 			}
 		} else if (Math.abs(diff) >= 1000) {
 			long secs = diff / 1000;
 			if (secs < 0) {
-				return "in " + Math.abs(secs) + " seconds";
+				return "in " + (Math.abs(secs) + 1) + " seconds";
 			} else {
 				return secs + " seconds ago";
 			}
