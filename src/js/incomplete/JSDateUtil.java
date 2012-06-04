@@ -42,7 +42,7 @@ public class JSDateUtil {
 			if (secs < 0) {
 				return "in " + Math.abs(secs) + " seconds";
 			} else {
-				return secs + " secs ago";
+				return secs + " seconds ago";
 			}
 		} else {
 			return "now";
