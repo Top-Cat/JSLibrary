@@ -18,6 +18,22 @@ public class JSDateUtil {
 		}
 	}
 	
+	public static String getRelativeTime(Calendar date) {
+		Calendar now = Calendar.getInstance();
+		long diff = now.getTimeInMillis() - date.getTimeInMillis();
+		if (diff >= 86400000) {
+			return getRelativeDate(date);
+		} else if (diff >= 3600000) {
+			// return in hours
+		} else if (diff >= 60000) {
+			// return in minutes
+		} else if (diff >= 1000) {
+			// return in seconds
+		} else {
+			return "now";
+		}
+	}
+	
 	public static boolean isSameDate(Calendar a, Calendar b) {
 		return (a.get(Calendar.YEAR) == b.get(Calendar.YEAR)
 				&& a.get(Calendar.MONTH) == b.get(Calendar.MONTH)
