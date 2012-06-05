@@ -11,6 +11,12 @@ public class JSDateUtil {
 	public static final long HOUR = 60 * MINUTE;
 	public static final long DAY = 24 * HOUR;
 	
+	/**
+	 * Returns the difference between now and the given date in a relative way, for example as <code>5 hours ago</code> or <code>in 3 days</code>.
+	 * 
+	 * @param date the date to express relatively
+	 * @return a string contating the relative phrase
+	 */
 	public static String getRelativeDate(Calendar date) {		
 		Calendar now = Calendar.getInstance();
 		long diff = now.getTimeInMillis() - date.getTimeInMillis();
@@ -53,6 +59,13 @@ public class JSDateUtil {
 		}
 	}
 	
+	/**
+	 * Determines whether two Calendar objects represent the same date (ignoring time values).
+	 * 
+	 * @param a the first date
+	 * @param b the second date
+	 * @return <code>true</code> if the Calendar objects represent the same date, and <code>false</code> if they do not.
+	 */
 	public static boolean isSameDate(Calendar a, Calendar b) {
 		return (a.get(Calendar.YEAR) == b.get(Calendar.YEAR)
 				&& a.get(Calendar.MONTH) == b.get(Calendar.MONTH)
