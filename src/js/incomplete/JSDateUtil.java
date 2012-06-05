@@ -49,6 +49,24 @@ public class JSDateUtil {
 				return "yesterday";
 			else
 				return (diff / DAY) + " days ago";
+		} else {
+			diff = - diff;
+			if (diff < 2 * SECOND)
+				return "just now";
+			else if (diff < MINUTE)
+				return "in " + (diff / SECOND) + " seconds";
+			else if (diff < 2 * MINUTE)
+				return "in a minute";
+			else if (diff < HOUR)
+				return "in " + (diff / MINUTE) + " minutes";
+			else if (diff < 2 * HOUR)
+				return "in an hour";
+			else if (diff < DAY)
+				return "in " + (diff / HOUR) + " hours";
+			else if (diff < 2 * DAY)
+				return "tomorrow";
+			else
+				return "in " + (diff / DAY) + " days";
 		}
 	}
 	
