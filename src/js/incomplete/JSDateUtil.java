@@ -4,13 +4,21 @@ import java.util.Calendar;
 
 public class JSDateUtil {
 
+	public static final long SECOND = 1000;
+	public static final long MINUTE = 60 * SECOND;
+	public static final long HOUR = 60 * MINUTE;
+	public static final long DAY = 24 * HOUR;
+	
 	public static String getRelativeDate(Calendar date) {
 		Calendar now = Calendar.getInstance();
 		long diff = now.getTimeInMillis() - date.getTimeInMillis();
 		long days = diff / 86400000;
 		
 		if (days < 0) {
-			return "in " + Math.abs(days) + " days";
+			if (days < -1)
+				return "in " + Math.abs(days) + " days";
+			else
+				return "tomorrow";
 		} else if (days > 0) {
 			return days + " days ago";
 		} else {
