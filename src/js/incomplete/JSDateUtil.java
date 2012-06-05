@@ -11,24 +11,7 @@ public class JSDateUtil {
 	public static final long HOUR = 60 * MINUTE;
 	public static final long DAY = 24 * HOUR;
 	
-	public static String getRelativeDate(Calendar date) {
-		Calendar now = Calendar.getInstance();
-		long diff = now.getTimeInMillis() - date.getTimeInMillis();
-		long days = diff / DAY;
-		
-		if (days < 0) {
-			if (days < -1)
-				return "in " + Math.abs(days) + " days";
-			else
-				return "tomorrow";
-		} else if (days > 0) {
-			return days + " days ago";
-		} else {
-			return "today";
-		}
-	}
-	
-	public static String relativeDate(Calendar date) {		
+	public static String getRelativeDate(Calendar date) {		
 		Calendar now = Calendar.getInstance();
 		long diff = now.getTimeInMillis() - date.getTimeInMillis();
 		
@@ -67,37 +50,6 @@ public class JSDateUtil {
 				return "tomorrow";
 			else
 				return "in " + (diff / DAY) + " days";
-		}
-	}
-	
-	public static String getRelativeTime(Calendar date) {
-		Calendar now = Calendar.getInstance();
-		long diff = now.getTimeInMillis() - date.getTimeInMillis();
-		if (Math.abs(diff) >= DAY) {
-			return getRelativeDate(date);
-		} else if (Math.abs(diff) >= HOUR) {
-			long hours = diff / HOUR;
-			if (hours < 0) {
-				return "in " + (Math.abs(hours) + 1) + " hours";
-			} else {
-				return hours + " hours ago";
-			}
-		} else if (Math.abs(diff) >= MINUTE) {
-			long mins = diff / MINUTE;
-			if (mins < 0) {
-				return "in " + (Math.abs(mins) + 1) + " minutes";
-			} else {
-				return mins + " minutes ago";
-			}
-		} else if (Math.abs(diff) >= SECOND) {
-			long secs = diff / SECOND;
-			if (secs < 0) {
-				return "in " + (Math.abs(secs) + 1) + " seconds";
-			} else {
-				return secs + " seconds ago";
-			}
-		} else {
-			return "now";
 		}
 	}
 	
