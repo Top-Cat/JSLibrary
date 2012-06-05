@@ -1,6 +1,8 @@
 package js.incomplete;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JSDateUtil {
 
@@ -24,6 +26,28 @@ public class JSDateUtil {
 		} else {
 			return "today";
 		}
+	}
+	
+	public static String relativeDate(Calendar date) {		
+		Calendar now = Calendar.getInstance();
+		long diff = now.getTimeInMillis() - date.getTimeInMillis();
+		
+		if (diff < 2 * SECOND)
+			return "just now";
+		else if (diff < MINUTE)
+			return (diff / SECOND) + " seconds ago";
+		else if (diff < 2 * MINUTE)
+			return "a minute ago";
+		else if (diff < HOUR)
+			return (diff / MINUTE) + " minutes ago";
+		else if (diff < 2 * HOUR)
+			return "an hour ago";
+		else if (diff < DAY)
+			return (diff / HOUR) + " hours ago";
+		else if (diff < 2 * DAY)
+			return "yesterday";
+		else
+			return (diff / DAY) + " days ago";
 	}
 	
 	public static String getRelativeTime(Calendar date) {
