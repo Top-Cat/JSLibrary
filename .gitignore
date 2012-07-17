@@ -148,3 +148,5 @@ bin/js/JSCalendar$Event.class
 bin/js/JSCalendar.class
 
 bin/js/JSDateUtil.class
+
+bin/js/incomplete/JSNotification.class
