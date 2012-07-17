@@ -14,6 +14,14 @@ public class JSNotification extends JFrame {
 	private JLabel textLabel;
 	private JLabel iconLabel;
 	
+	public JSNotification(String text) {
+		this("", text, null);
+	}
+	
+	public JSNotification(String title, String text) {
+		this(title, text, null);
+	}
+	
 	public JSNotification(String title, String text, Icon icon) {
 		this.title = title;
 		this.text = text;
