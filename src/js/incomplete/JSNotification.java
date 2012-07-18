@@ -5,21 +5,25 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class JSNotification extends JFrame {
+public class JSNotification extends JFrame implements PropertyChangeListener {
 
 	private String title;
 	private String text;
 	private ImageIcon icon;
 	private int location;
+	private int duration;
 	
 	private JLabel titleLabel;
 	private JLabel textLabel;
 	private JLabel iconLabel;
+	private WaitThread waitThread;
 	
 	public static final int TOP_LEFT = 0;
 	public static final int TOP = 1;
@@ -71,6 +75,18 @@ public class JSNotification extends JFrame {
 		setLocation(getPointForLocation(location));
 	}
 	
+	public void setDisplayDuration(int duration) {
+		this.duration = duration;
+	}
+	
+	public void display() {
+		setVisible(true);
+		waitThread = new WaitThread(duration);
+		waitThread.addPropertyChangeListener(this);
+		Thread t = new Thread(waitThread);
+		t.start();
+	}
+	
 	public void paint(Graphics g) {
 		super.paint(g);
 		if (icon != null) 
@@ -119,6 +135,41 @@ public class JSNotification extends JFrame {
 			break;
 		}
 		return p;
+	}
+	
+	private class WaitThread implements Runnable {
+
+		private int duration;
+		private PropertyChangeListener listener;
+		
+		public WaitThread(int duration) {
+			this.duration = duration;
+		}
+		
+		public void addPropertyChangeListener(PropertyChangeListener l) {
+			this.listener = l;
+		}
+
+		public void run() {
+			long start = System.currentTimeMillis();
+			long now = System.currentTimeMillis();
+			while (now <= (start + duration)) {
+				now = System.currentTimeMillis();
+			}
+			firePropertyChange("finished", false, true);
+			listener.propertyChange(new PropertyChangeEvent(this, "finished", false, true));
+		}
+		
+		public void setDuration(int d) {
+			this.duration = d;
+		}
+		
+	}
+
+	public void propertyChange(PropertyChangeEvent e) {
+		if (e.getSource() == waitThread) {
+			setVisible(false);
+		}
 	}
 	
 }
