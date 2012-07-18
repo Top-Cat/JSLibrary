@@ -1,6 +1,7 @@
 package js.incomplete;
 
 import java.awt.Point;
+import java.awt.Toolkit;
 
 import javax.swing.Icon;
 import javax.swing.JFrame;
@@ -48,7 +49,28 @@ public class JSNotification extends JFrame {
 	
 	private Point getPointForLocation(int location) {
 		Point p = new Point();
-		// some kind of switch statement for getting coordinates from location
+		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+		switch (location) {
+		case TOP_LEFT:
+			break;
+		case TOP:
+			break;
+		case TOP_RIGHT:
+			break;
+		case LEFT:
+			break;
+		case CENTER:
+			break;
+		case RIGHT:
+			break;
+		case BOTTOM_LEFT:
+			break;
+		case BOTTOM:
+			break;
+		case BOTTOM_RIGHT:
+			break;
+		}
 		return p;
 	}
 	
