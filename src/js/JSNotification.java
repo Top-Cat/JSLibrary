@@ -1,4 +1,4 @@
-package js.incomplete;
+package js;
 
 import java.awt.Dimension;
 import java.awt.Font;

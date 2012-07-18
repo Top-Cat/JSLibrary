@@ -152,3 +152,7 @@ bin/js/JSDateUtil.class
 bin/js/incomplete/JSNotification.class
 
 bin/js/incomplete/JSNotification$WaitThread.class
+
+bin/js/JSNotification$WaitThread.class
+
+bin/js/JSNotification.class
