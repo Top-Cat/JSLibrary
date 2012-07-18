@@ -1,5 +1,6 @@
 package js.incomplete;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 
@@ -40,6 +41,9 @@ public class JSNotification extends JFrame {
 		this.title = title;
 		this.text = text;
 		this.icon = icon;
+		
+		setSize(270, 80);
+		setUndecorated(true);
 	}
 	
 	public void setLocationOnScreen(int location) {
@@ -49,26 +53,43 @@ public class JSNotification extends JFrame {
 	
 	private Point getPointForLocation(int location) {
 		Point p = new Point();
-		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
-		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		switch (location) {
 		case TOP_LEFT:
+			p.x = 10;
+			p.y = 30;
 			break;
 		case TOP:
+			p.x = (screen.width - 270) / 2;
+			p.y = 30;
 			break;
 		case TOP_RIGHT:
+			p.x = screen.width - 280;
+			p.y = 30;
 			break;
 		case LEFT:
+			p.x = 10;
+			p.y = (screen.height - 80) / 2;
 			break;
 		case CENTER:
+			p.x = (screen.width - 270) / 2;
+			p.y = (screen.height - 80) / 2;
 			break;
 		case RIGHT:
+			p.x = screen.width - 280;
+			p.y = (screen.height - 80) / 2;
 			break;
 		case BOTTOM_LEFT:
+			p.x = 10;
+			p.y = screen.height - 90;
 			break;
 		case BOTTOM:
+			p.x = (screen.width - 270) / 2;
+			p.y = screen.height - 90;
 			break;
 		case BOTTOM_RIGHT:
+			p.x = screen.width - 280;
+			p.y = screen.height - 90;
 			break;
 		}
 		return p;
