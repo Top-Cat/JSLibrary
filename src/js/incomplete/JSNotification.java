@@ -1,5 +1,7 @@
 package js.incomplete;
 
+import java.awt.Point;
+
 import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,6 +11,7 @@ public class JSNotification extends JFrame {
 	private String title;
 	private String text;
 	private Icon icon;
+	private int location;
 	
 	private JLabel titleLabel;
 	private JLabel textLabel;
@@ -36,6 +39,17 @@ public class JSNotification extends JFrame {
 		this.title = title;
 		this.text = text;
 		this.icon = icon;
+	}
+	
+	public void setLocationOnScreen(int location) {
+		this.location = location;
+		setLocation(getPointForLocation(location));
+	}
+	
+	private Point getPointForLocation(int location) {
+		Point p = new Point();
+		// some kind of switch statement for getting coordinates from location
+		return p;
 	}
 	
 }
