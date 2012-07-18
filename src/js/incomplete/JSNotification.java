@@ -1,12 +1,11 @@
 package js.incomplete;
 
 import java.awt.Dimension;
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 
-import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -14,7 +13,7 @@ public class JSNotification extends JFrame {
 
 	private String title;
 	private String text;
-	private Icon icon;
+	private ImageIcon icon;
 	private int location;
 	
 	private JLabel titleLabel;
@@ -39,7 +38,7 @@ public class JSNotification extends JFrame {
 		this(title, text, null);
 	}
 	
-	public JSNotification(String title, String text, Icon icon) {
+	public JSNotification(String title, String text, ImageIcon icon) {
 		this.title = title;
 		this.text = text;
 		this.icon = icon;
@@ -67,13 +66,9 @@ public class JSNotification extends JFrame {
 		setLocation(getPointForLocation(location));
 	}
 	
-	private BufferedImage resizeImage(BufferedImage originalImage, int type){
-		BufferedImage resizedImage = new BufferedImage(50, 50, type);
-		Graphics2D g = resizedImage.createGraphics();
-		g.drawImage(originalImage, 0, 0, 50, 50, null);
-		g.dispose();
-	 
-		return resizedImage;
+	public void paint(Graphics g) {
+		super.paint(g);
+		g.drawImage(icon.getImage(), 5, 5, 50, 50, icon.getImageObserver());
 	}
 	
 	private Point getPointForLocation(int location) {
