@@ -235,7 +235,7 @@ public class UITableViewCell extends JPanel implements MouseListener, KeyListene
 				accessoryLabel.setForeground(Color.WHITE);
 			setBackground(BLUE);
 		}
-		if (!editMode && event.getClickCount() == 2)
+		if (!editMode && event.getClickCount() == 2 && table.getCellTitlesEditable())
 			enterEditMode();
 		else if (editMode)
 			exitEditMode();

@@ -25,6 +25,7 @@ public class UITableView extends JScrollPane implements MouseListener {
 	private JPanel table;
 	private int cellStyle;
 	private int selectedRow; 
+	private boolean cellTitlesEditable;
 	
 	/* Begin constructors */
 	
@@ -93,6 +94,15 @@ public class UITableView extends JScrollPane implements MouseListener {
 		return cells.size();
 	}
 	
+	/**
+	 * Determines whether it is currently possible to edit cell titles by double-clicking.
+	 * 
+	 * @return a boolean representing whether the cells are editable
+	 */
+	public boolean getCellTitlesEditable() {
+		return cellTitlesEditable;
+	}
+	
 	/* Begin setters */
 	
 	public void setSize(int width, int height) {
@@ -106,6 +116,15 @@ public class UITableView extends JScrollPane implements MouseListener {
 			cell.setWidth(width - 20);
 		}
 		super.setBounds(x, y, width, height);
+	}
+	
+	/**
+	 * Sets whether it is possible to edit cell titles by double-clicking.
+	 * 
+	 * @param editable whether or not the cells should be editable
+	 */
+	public void setCellTitlesEditable(boolean editable) {
+		cellTitlesEditable = editable;
 	}
 	
 	/* Begin utility methods */
