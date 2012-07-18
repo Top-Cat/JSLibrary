@@ -47,17 +47,14 @@ public class JSNotification extends JFrame {
 		setUndecorated(true);
 		setLayout(null);
 		
-		iconLabel = new JLabel(icon);
-		iconLabel.setBounds(5, 5, 50, 50);
-		add(iconLabel);
-		
 		titleLabel = new JLabel(title);
-		titleLabel.setBounds(80, 5, 190, 20);
-		titleLabel.setFont(titleLabel.getFont().deriveFont(14f));
+		titleLabel.setBounds(65, 5, 200, 20);
+		titleLabel.setFont(titleLabel.getFont().deriveFont(12f));
 		add(titleLabel);
 		
 		textLabel = new JLabel("<html>" + text);
-		textLabel.setBounds(80, 25, 185, 50);
+		textLabel.setBounds(65, 30, 200, 40);
+		textLabel.setFont(textLabel.getFont().deriveFont(11f));
 		add(textLabel);
 	}
 	
@@ -68,7 +65,7 @@ public class JSNotification extends JFrame {
 	
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.drawImage(icon.getImage(), 5, 5, 50, 50, icon.getImageObserver());
+		g.drawImage(icon.getImage(), 5, 15, 50, 50, icon.getImageObserver());
 	}
 	
 	private Point getPointForLocation(int location) {
