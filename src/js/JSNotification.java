@@ -12,6 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * JSNotification provides a way to display a small notification on screen with a title and short paragraph of text.
+ * It is inspired by the Growl framework for OS X.
+ */
 public class JSNotification extends JFrame implements PropertyChangeListener {
 
 	private String title;
@@ -35,14 +39,32 @@ public class JSNotification extends JFrame implements PropertyChangeListener {
 	public static final int BOTTOM = 7;
 	public static final int BOTTOM_RIGHT = 8;
 	
+	/**
+	 * Creates a new notification with no title, no image and the specified text.
+	 * 
+	 * @param text the text to display in the body of the notification.
+	 */
 	public JSNotification(String text) {
 		this("", text, null);
 	}
 	
+	/**
+	 * Creates a new notification with the specified title, no image and the specified text.
+	 * 
+	 * @param title the text to display at the top of the notification.
+	 * @param text the text to display in the body of the notification.
+	 */
 	public JSNotification(String title, String text) {
 		this(title, text, null);
 	}
 	
+	/**
+	 * Creates a new notification with the specified title, specified image and specified text.
+	 * 
+	 * @param title the text to display at the top of the notification.
+	 * @param text the text to display in the body of the notification.
+	 * @param icon the image to display on the left hand side of the notification.
+	 */
 	public JSNotification(String title, String text, ImageIcon icon) {
 		this.title = title;
 		this.text = text;
@@ -70,15 +92,31 @@ public class JSNotification extends JFrame implements PropertyChangeListener {
 		}
 	}
 	
+	/**
+	 * Sets which corner of the screen the notification should be displayed in.<br><br>
+	 * 
+	 * To use this method, pass one of the JSNotification location constants such as <code>JSNotification.LEFT</code> or
+	 * <code>JSNotification.BOTTOM_RIGHT</code>.
+	 * 
+	 * @param location the integer representing the corner of the screen to display the notification in.
+	 */
 	public void setLocationOnScreen(int location) {
 		this.location = location;
 		setLocation(getPointForLocation(location));
 	}
 	
+	/**
+	 * Sets the duration in seconds that the notification should be displayed for when using the <code>display()</code> method.
+	 * 
+	 * @param duration the time in seconds to display the notification for.
+	 */
 	public void setDisplayDuration(int duration) {
 		this.duration = duration;
 	}
 	
+	/**
+	 * Makes the notification visible on screen and automatically hides it again once the specified duration has passed.
+	 */
 	public void display() {
 		setVisible(true);
 		waitThread = new WaitThread(duration);
