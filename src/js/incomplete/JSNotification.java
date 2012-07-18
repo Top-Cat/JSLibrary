@@ -1,6 +1,7 @@
 package js.incomplete;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -48,14 +49,21 @@ public class JSNotification extends JFrame {
 		setLayout(null);
 		
 		titleLabel = new JLabel(title);
-		titleLabel.setBounds(65, 5, 200, 20);
+		titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD));
 		titleLabel.setFont(titleLabel.getFont().deriveFont(12f));
 		add(titleLabel);
 		
 		textLabel = new JLabel("<html>" + text);
-		textLabel.setBounds(65, 30, 200, 40);
 		textLabel.setFont(textLabel.getFont().deriveFont(11f));
 		add(textLabel);
+		
+		if (icon != null) {
+			titleLabel.setBounds(65, 5, 200, 20);
+			textLabel.setBounds(65, 30, 200, 40);
+		} else {
+			titleLabel.setBounds(10, 5, 260, 20);
+			textLabel.setBounds(10, 30, 260, 40);
+		}
 	}
 	
 	public void setLocationOnScreen(int location) {
@@ -65,7 +73,8 @@ public class JSNotification extends JFrame {
 	
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.drawImage(icon.getImage(), 5, 15, 50, 50, icon.getImageObserver());
+		if (icon != null) 
+			g.drawImage(icon.getImage(), 5, 15, 50, 50, icon.getImageObserver());
 	}
 	
 	private Point getPointForLocation(int location) {
