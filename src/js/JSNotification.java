@@ -125,6 +125,18 @@ public class JSNotification extends JFrame implements PropertyChangeListener {
 		t.start();
 	}
 	
+	/**
+	 * Performs the same action as <code>display()</code> but without having to call <code>setDisplayDuration()</code> first.
+	 * 
+	 * @param duration the duration in seconds to display the notification for.
+	 */
+	public void displayForDuration(int duration) {
+		int oldDuration = this.duration;
+		setDisplayDuration(duration);
+		display();
+		this.duration = oldDuration;
+	}
+	
 	public void paint(Graphics g) {
 		super.paint(g);
 		if (icon != null) 
