@@ -70,7 +70,7 @@ public class JSLog extends JSTextFileUtility {
 	}
 	
 	private String dateToString(Calendar date) {
-		return Integer.toString(date.get(Calendar.YEAR)) + "-" + getDoubleDigits(date.get(Calendar.MONTH)) +
+		return Integer.toString(date.get(Calendar.YEAR)) + "-" + getDoubleDigits(date.get(Calendar.MONTH) + 1) +
 				"-" + getDoubleDigits(date.get(Calendar.DATE));
 	}
 	
