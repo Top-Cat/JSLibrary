@@ -19,6 +19,8 @@ public class JSFormDialog extends JDialog {
 	private JLabel titleLabel;
 	
 	private int y;
+	private int labelWidth;
+	private int componentWidth;
 	
 	public JSFormDialog(String title, String[] componentList, String[] buttonList) {
 		components = new Vector<JComponent>();
@@ -35,11 +37,20 @@ public class JSFormDialog extends JDialog {
 		add(titleLabel);
 		
 		y = 40;
+		labelWidth = getLabelWidth(componentList);
+		componentWidth = 340 - labelWidth;
 	}
 	
 	public JTextField createTextField(String labelText) {
 		JLabel label = new JLabel(labelText, JLabel.RIGHT);
+		label.setBounds(0, y, labelWidth, 20);
+		add(label);
+		
 		JTextField field = new JTextField();
+		field.setBounds(labelWidth + 30, y, componentWidth, 25);
+		add(field);
+		
+		y += 30;
 		
 		return field;
 	}
