@@ -156,3 +156,5 @@ bin/js/incomplete/JSNotification$WaitThread.class
 bin/js/JSNotification$WaitThread.class
 
 bin/js/JSNotification.class
+
+*.class
