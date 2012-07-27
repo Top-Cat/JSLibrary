@@ -11,7 +11,7 @@ public class JSEntryDialog extends JDialog {
 	private Vector<JComponent> components;
 	private Vector<JLabel> labels;
 	
-	public JSEntryDialog() {
+	public JSEntryDialog(String title, String[] componentList, String[] buttons) {
 		components = new Vector<JComponent>();
 		labels = new Vector<JLabel>();
 	}
