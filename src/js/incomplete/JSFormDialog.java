@@ -1,11 +1,14 @@
 package js.incomplete;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class JSFormDialog extends JDialog {
 
@@ -30,6 +33,27 @@ public class JSFormDialog extends JDialog {
 		titleLabel.setFont(titleLabel.getFont().deriveFont(18f));
 		titleLabel.setBounds(0, 0, 400, 30);
 		add(titleLabel);
+		
+		y = 40;
+	}
+	
+	public JTextField createTextField(String labelText) {
+		JLabel label = new JLabel(labelText, JLabel.RIGHT);
+		JTextField field = new JTextField();
+		
+		return field;
+	}
+	
+	private int getLabelWidth(String[] labels) {
+		int max = 0;
+		Font font = new JLabel().getFont();
+		FontMetrics fm = getFontMetrics(font);
+		for (int i = 0; i < labels.length; i ++) {
+			int width = fm.stringWidth(labels[i]);
+			if (width > max)
+				max = width;
+		}
+		return max + 10;
 	}
 	
 	public JComponent[] getComponents() {
