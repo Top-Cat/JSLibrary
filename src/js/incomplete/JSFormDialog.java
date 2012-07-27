@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
-public class JSEntryDialog extends JDialog {
+public class JSFormDialog extends JDialog {
 
 	private Vector<JComponent> components;
 	private Vector<JLabel> labels;
@@ -17,7 +17,7 @@ public class JSEntryDialog extends JDialog {
 	
 	private int y;
 	
-	public JSEntryDialog(String title, String[] componentList, String[] buttonList) {
+	public JSFormDialog(String title, String[] componentList, String[] buttonList) {
 		components = new Vector<JComponent>();
 		labels = new Vector<JLabel>();
 		buttons = new Vector<JButton>();
