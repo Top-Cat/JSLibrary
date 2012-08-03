@@ -71,4 +71,10 @@ public class JSDateUtil {
 		result += date.get(Calendar.YEAR);
 		return result;
 	}
+	
+	public static String formatDate(Calendar date, String format) {
+		String result = "";
+		// reformat here
+		return result;
+	}
 }
