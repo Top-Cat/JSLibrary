@@ -12,10 +12,11 @@ public class JSDateUtil {
 	public static final long DAY = 24 * HOUR;
 	
 	/**
-	 * Returns the difference between now and the given date in a relative way, for example as <code>5 hours ago</code> or <code>in 3 days</code>.
+	 * Returns the difference between now and the given date in a relative way, for example as <code>5 hours ago</code>. Note that
+	 * this only works for dates in the past, for now. If a future date is given, an empty string will be returned.
 	 * 
 	 * @param date the date to express relatively
-	 * @return a string contating the relative phrase
+	 * @return a string containing the relative phrase
 	 */
 	public static String getRelativeDate(Calendar date) {		
 		Calendar now = Calendar.getInstance();
@@ -39,23 +40,7 @@ public class JSDateUtil {
 			else
 				return (diff / DAY) + " days ago";
 		} else {
-			diff = - diff;
-			if (diff < 2 * SECOND)
-				return "just now";
-			else if (diff < MINUTE)
-				return "in " + (diff / SECOND) + " seconds";
-			else if (diff < 2 * MINUTE)
-				return "in a minute";
-			else if (diff < HOUR)
-				return "in " + (diff / MINUTE) + " minutes";
-			else if (diff < 2 * HOUR)
-				return "in an hour";
-			else if (diff < DAY)
-				return "in " + (diff / HOUR) + " hours";
-			else if (diff < 2 * DAY)
-				return "tomorrow";
-			else
-				return "in " + (diff / DAY) + " days";
+			return ""; 
 		}
 	}
 	
