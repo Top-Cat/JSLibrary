@@ -327,11 +327,10 @@ public class JSUtil {
 	 * @return a String containing the reformatted number
 	 */
 	public static String formatWithPlaceValues(int number, int places) {
-		String result = "";
 		String n = Integer.toString(number);
 		while (n.length() < places) {
 			n = "0" + n;
 		}
-		return result;
+		return n;
 	}
 }

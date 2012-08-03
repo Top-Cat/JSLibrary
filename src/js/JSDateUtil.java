@@ -57,4 +57,11 @@ public class JSDateUtil {
 				&& a.get(Calendar.DAY_OF_MONTH) == b.get(Calendar.DAY_OF_MONTH));
 	}
 	
+	public static String getShortFormat(Calendar date, String separator) {
+		String result = "";
+		result += JSUtil.formatWithPlaceValues(date.get(Calendar.DAY_OF_MONTH), 2) + separator;
+		result += JSUtil.formatWithPlaceValues(date.get(Calendar.MONTH) + 1, 2) + separator;
+		result += date.get(Calendar.YEAR);
+		return result;
+	}
 }
