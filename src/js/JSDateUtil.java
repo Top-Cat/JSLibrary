@@ -57,6 +57,13 @@ public class JSDateUtil {
 				&& a.get(Calendar.DAY_OF_MONTH) == b.get(Calendar.DAY_OF_MONTH));
 	}
 	
+	/**
+	 * Returns the specified date in a concise DDMMYYYY format, separated with an arbitrary string.
+	 * 
+	 * @param date the date to reformat
+	 * @param separator the separator to use, such as <code>/</code> or <code>-</code>
+	 * @return the reformatted date
+	 */
 	public static String getShortFormat(Calendar date, String separator) {
 		String result = "";
 		result += JSUtil.formatWithPlaceValues(date.get(Calendar.DAY_OF_MONTH), 2) + separator;
