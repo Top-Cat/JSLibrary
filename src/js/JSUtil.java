@@ -317,4 +317,21 @@ public class JSUtil {
 	    System.arraycopy(b, 0, result, a.length, b.length);
 	    return result;
 	  }
+	
+	/**
+	 * Formats a number to show the specified number of place values. For instance, if you wish to display all values 
+	 * in a program as double-digit numbers (13, 24, 07, etc.) then use 2 as the <code>places</code> parameter.
+	 * 
+	 * @param number the integer to reformat
+	 * @param places the number of place values to use
+	 * @return a String containing the reformatted number
+	 */
+	public static String formatWithPlaceValues(int number, int places) {
+		String result = "";
+		String n = Integer.toString(number);
+		while (n.length() < places) {
+			n = "0" + n;
+		}
+		return result;
+	}
 }
