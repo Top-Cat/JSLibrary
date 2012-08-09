@@ -2,6 +2,7 @@ package js;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class JSDateUtil {
@@ -74,7 +75,103 @@ public class JSDateUtil {
 	
 	public static String formatDate(Calendar date, String format) {
 		String result = "";
-		// reformat here
+		
+		for (int i = 0; i < format.length(); i ++) {
+			char c = format.charAt(i);
+			switch (c) {
+			case 'd':
+				result += JSUtil.formatWithPlaceValues(date.get(Calendar.DAY_OF_MONTH), 2);
+				break;
+			case 'D':
+				result += date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault());
+				break;
+			case 'j':
+				result += date.get(Calendar.DAY_OF_MONTH);
+				break;
+			case 'l':
+				result += date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
+				break;
+			case 'N':
+				result += getISODayNumber(date);
+				break;
+			case 'S':
+				String s = JSUtil.addRankingSuffix(date.get(Calendar.DAY_OF_MONTH));
+				result += s.substring(s.length() - 2);
+				break;
+			case 'w':
+				result += (date.get(Calendar.DAY_OF_WEEK) - 1);
+				break;
+			case 'z':
+				result += (date.get(Calendar.DAY_OF_YEAR) - 1);
+				break;
+			case 'W':
+				result += date.get(Calendar.WEEK_OF_YEAR);
+				break;
+			case 'F':
+				result += date.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+				break;
+			case 'm':
+				result += JSUtil.formatWithPlaceValues(date.get(Calendar.MONTH) + 1, 2);
+				break;
+			case 'M':
+				result += date.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
+				break;
+			case 'n':
+				result += (date.get(Calendar.MONTH) + 1);
+				break;
+			case 't':
+				result += date.getActualMaximum(Calendar.DAY_OF_MONTH);
+				break;
+			case 'Y':
+				result += date.get(Calendar.YEAR);
+				break;
+			case 'y':
+				result += Integer.toString(date.get(Calendar.YEAR)).substring(2);
+				break;
+			case 'a':
+				result += date.getDisplayName(Calendar.AM_PM, Calendar.LONG, Locale.getDefault()).toLowerCase();
+				break;
+			case 'A':
+				result += date.getDisplayName(Calendar.AM_PM, Calendar.LONG, Locale.getDefault());
+				break;
+			case 'g':
+				result += date.get(Calendar.HOUR);
+				break;
+			case 'G':
+				result += date.get(Calendar.HOUR_OF_DAY);
+				break;
+			case 'h':
+				result += JSUtil.formatWithPlaceValues(date.get(Calendar.HOUR), 2);
+				break;
+			case 'H':
+				result += JSUtil.formatWithPlaceValues(date.get(Calendar.HOUR_OF_DAY), 2);
+				break;
+			case 'i':
+				result += JSUtil.formatWithPlaceValues(date.get(Calendar.MINUTE), 2);
+				break;
+			case 's':
+				result += JSUtil.formatWithPlaceValues(date.get(Calendar.SECOND), 2);
+				break;
+			case 'U':
+				result += Long.toString(date.getTimeInMillis());
+				break;
+			case '`':
+				i ++;
+				result += format.charAt(i);
+				break;
+			default:
+				result += c;
+			}
+		}
+		
 		return result;
+	}
+	
+	private static int getISODayNumber(Calendar d) {
+		int day = d.get(Calendar.DAY_OF_WEEK);
+		day --;
+		if (day == 0)
+			day = 7;
+		return day;
 	}
 }
