@@ -125,8 +125,8 @@ public class JSUtil {
 		String newNumber = "";
 		
 		phoneNumber = removeAll(" ", phoneNumber);
-		phoneNumber = removeAll("(", phoneNumber);
-		phoneNumber = removeAll(")", phoneNumber);
+		phoneNumber = removeAll("\\(", phoneNumber);
+		phoneNumber = removeAll("\\)", phoneNumber);
 		
 		if (phoneNumber.length() < 10 || phoneNumber.length() > 11) {
 			System.out.println("Invalid phone number.");
