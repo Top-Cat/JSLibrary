@@ -22,4 +22,12 @@ public class JSValidatedTextField extends JTextField {
 		return field;
 	}
 	
+	public static JSValidatedTextField createLengthCheckField(int min, int max) {
+		JSValidatedTextField field = new JSValidatedTextField();
+		field.type = LENGTH_CHECK;
+		field.minLength = min;
+		field.maxLength = max;
+		return field;
+	}
+	
 }
