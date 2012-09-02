@@ -38,4 +38,11 @@ public class JSValidatedTextField extends JTextField {
 		return field;
 	}
 	
+	public static JSValidatedTextField createFormatCheckField(String regex) {
+		JSValidatedTextField field = new JSValidatedTextField();
+		field.type = FORMAT_CHECK;
+		field.pattern = regex;
+		return field;
+	}
+	
 }
