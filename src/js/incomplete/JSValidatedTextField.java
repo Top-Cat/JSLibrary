@@ -20,6 +20,7 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	private String pattern;
 	private boolean auto;
 	private String error;
+	private String name;
 	
 	JSValidatedTextField() {
 		addFocusListener(this);
@@ -52,6 +53,14 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 		field.type = FORMAT_CHECK;
 		field.pattern = regex;
 		return field;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public String getErrorMessage() {
