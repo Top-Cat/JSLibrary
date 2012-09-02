@@ -15,6 +15,7 @@ public class JSValidatedTextField extends JTextField {
 	private double minValue;
 	private double maxValue;
 	private String pattern;
+	private boolean auto;
 	
 	public static JSValidatedTextField createPresenceCheckField() {
 		JSValidatedTextField field = new JSValidatedTextField();
@@ -43,6 +44,14 @@ public class JSValidatedTextField extends JTextField {
 		field.type = FORMAT_CHECK;
 		field.pattern = regex;
 		return field;
+	}
+	
+	public void setAutoValidationEnabled(boolean state) {
+		auto = state;
+	}
+	
+	public boolean isAutoValidationEnabled() {
+		return auto;
 	}
 	
 }
