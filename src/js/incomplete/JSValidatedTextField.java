@@ -16,4 +16,10 @@ public class JSValidatedTextField extends JTextField {
 	private double maxValue;
 	private String pattern;
 	
+	public static JSValidatedTextField createPresenceCheckField() {
+		JSValidatedTextField field = new JSValidatedTextField();
+		field.type = PRESENCE_CHECK;
+		return field;
+	}
+	
 }
