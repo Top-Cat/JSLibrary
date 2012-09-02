@@ -54,6 +54,10 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 		return field;
 	}
 	
+	public String getErrorMessage() {
+		return error;
+	}
+	
 	public void setAutoValidationEnabled(boolean state) {
 		auto = state;
 	}
