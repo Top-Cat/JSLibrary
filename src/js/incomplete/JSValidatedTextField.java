@@ -19,6 +19,7 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	private double maxValue;
 	private String pattern;
 	private boolean auto;
+	private String error;
 	
 	JSValidatedTextField() {
 		addFocusListener(this);
