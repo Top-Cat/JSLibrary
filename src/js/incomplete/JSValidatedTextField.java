@@ -9,6 +9,7 @@ public class JSValidatedTextField extends JTextField {
 	public static final int RANGE_CHECK = 2;
 	public static final int FORMAT_CHECK = 3;
 	
+	private int type;
 	private int minLength;
 	private int maxLength;
 	private double minValue;
