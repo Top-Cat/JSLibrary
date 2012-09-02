@@ -20,6 +20,10 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	private String pattern;
 	private boolean auto;
 	
+	JSValidatedTextField() {
+		addFocusListener(this);
+	}
+	
 	public static JSValidatedTextField createPresenceCheckField() {
 		JSValidatedTextField field = new JSValidatedTextField();
 		field.type = PRESENCE_CHECK;
