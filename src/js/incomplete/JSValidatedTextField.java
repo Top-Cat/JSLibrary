@@ -1,8 +1,11 @@
 package js.incomplete;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
 import javax.swing.JTextField;
 
-public class JSValidatedTextField extends JTextField {
+public class JSValidatedTextField extends JTextField implements FocusListener {
 
 	private static final int PRESENCE_CHECK = 0;
 	private static final int LENGTH_CHECK = 1;
@@ -52,6 +55,14 @@ public class JSValidatedTextField extends JTextField {
 	
 	public boolean isAutoValidationEnabled() {
 		return auto;
+	}
+
+	public void focusGained(FocusEvent e) {
+
+	}
+
+	public void focusLost(FocusEvent e) {
+
 	}
 	
 }
