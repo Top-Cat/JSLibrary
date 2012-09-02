@@ -30,4 +30,12 @@ public class JSValidatedTextField extends JTextField {
 		return field;
 	}
 	
+	public static JSValidatedTextField createRangeCheckField(double min, double max) {
+		JSValidatedTextField field = new JSValidatedTextField();
+		field.type = RANGE_CHECK;
+		field.minValue = min;
+		field.maxValue = max;
+		return field;
+	}
+	
 }
