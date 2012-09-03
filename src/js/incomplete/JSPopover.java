@@ -42,7 +42,7 @@ public class JSPopover extends JFrame {
 		
 		panel = new JPanel();
 		if (direction == LEFT)
-			panel.setBounds(30, 10, getWidth() - 20, getHeight() - 20);
+			panel.setBounds(30, 10, getWidth() - 40, getHeight() - 20);
 		else
 			panel.setBounds(10, 30, getWidth() - 20, getHeight() - 40);
 		panel.setBackground(Color.WHITE);
@@ -84,7 +84,7 @@ public class JSPopover extends JFrame {
 		}
 
 		if (direction == LEFT)
-			panel.setBounds(30, 10, getWidth() - 20, getHeight() - 20);
+			panel.setBounds(30, 10, getWidth() - 40, getHeight() - 20);
 		else
 			panel.setBounds(10, 30, getWidth() - 20, getHeight() - 40);
 		super.paint(g);
@@ -113,10 +113,10 @@ public class JSPopover extends JFrame {
 	public void setSize(int width, int height) {
 		remove(panel);
 		if (direction == LEFT) {
-			panel.setBounds(30, 10, width - 20, height - 20);
+			panel.setBounds(30, 10, width - 40, height - 20);
 			super.setSize(width + 20, height);
 		} else {
-			panel.setBounds(10, 30, getWidth() - 20, getHeight() - 20);
+			panel.setBounds(10, 30, getWidth() - 20, getHeight() - 40);
 			super.setSize(width, height + 20);
 		}
 		add(panel);
