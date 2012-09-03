@@ -57,37 +57,52 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	
 	public void validate() {
 		String text = getText();
+		boolean failed = false;
 		switch (type) {
 		case PRESENCE_CHECK:
-			if (text.length() == 0)
+			if (text.length() == 0) {
 				error = " is required.";
+				failed = true;
+			}
 			break;
 		case LENGTH_CHECK:
-			if (text.length() < minLength)
+			if (text.length() < minLength) {
+				failed = true;
 				error = " must contain at least " + minLength + " characters.";
-			else if (text.length() > maxLength)
+			} else if (text.length() > maxLength) {
 				error = " must contain " + maxLength + " characters or less.";
+				failed = true;
+			}
 			break;
 		case RANGE_CHECK:
 			try {
 				double number = Double.parseDouble(text);
-				if (number < minValue)
+				if (number < minValue) {
 					error = " must be at least " + minValue + ".";
-				else if (number > maxValue)
+					failed = true;
+				} else if (number > maxValue) {
 					error = " must be " + maxValue + " or less.";
+					failed = true;
+				}
 			} catch (NumberFormatException e) {
 				error = " must contain a number.";
+				failed = true;
 			}
 			break;
 		case FORMAT_CHECK:
-			if (! text.matches(pattern))
+			if (! text.matches(pattern)) {
 				error = " is not in the correct format.";
+				failed = true;
+			}
 			break;
 		}
-		if (name != null && name.length() > 0)
-			error = name + error;
-		else
-			error = "This field" + error;
+		if (failed) {
+			if (name != null && name.length() > 0)
+				error = name + error;
+			else
+				error = "This field" + error;
+		} else
+			error = "";
 	}
 	
 	public void setName(String name) {
