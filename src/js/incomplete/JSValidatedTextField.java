@@ -147,7 +147,7 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 				JLabel label = new JLabel();
 				label.setVerticalAlignment(JLabel.CENTER);
 				label.setVerticalTextPosition(JLabel.CENTER);
-				label.setBounds(5, 5, 215, 45);
+				label.setBounds(5, 5, 205, 45);
 				label.setText("<html>" + error + "</html>");
 				popover.add(label);
 				popover.setLocation(getLocationOnScreen().x + getWidth(), getLocationOnScreen().y + (getHeight() / 2));
