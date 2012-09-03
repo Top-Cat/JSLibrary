@@ -105,6 +105,10 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 			error = "";
 	}
 	
+	public boolean passedValidation() {
+		return error.length() == 0;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
