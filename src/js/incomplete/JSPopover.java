@@ -57,6 +57,14 @@ public class JSPopover extends JFrame {
 			super.setLocation(x - middleW, y);
 	}
 	
+	public void setSize(int width, int height) {
+		if (direction == LEFT)
+			super.setSize(width + 20, height);
+		else
+			super.setSize(width, height + 20);
+		panel.setBounds(30, 10, width - 20, height - 20);
+	}
+	
 	public void setDirection(int direction) {
 		this.direction = direction;
 		repaint();
