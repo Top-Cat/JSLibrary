@@ -53,7 +53,7 @@ public class JSPopover extends JFrame {
 		repaint();
 	}
 	
-	public void setBackground(Color c) {
+	public void setContentBackground(Color c) {
 		panel.setBackground(c);
 	}
 	
