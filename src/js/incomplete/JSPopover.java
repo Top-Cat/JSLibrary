@@ -25,6 +25,7 @@ public class JSPopover extends JFrame {
 		setBackground(new Color(0, 0, 0, 0));
 		setAlwaysOnTop(true);
 		setFocusableWindowState(false);
+		getRootPane().putClientProperty("apple.awt.draggableWindowBackground", Boolean.FALSE);
 		
 		panel = new JPanel();
 		panel.setBounds(10, 30, getWidth() - 20, getHeight() - 20);
@@ -40,6 +41,7 @@ public class JSPopover extends JFrame {
 		setBackground(new Color(0, 0, 0, 0));
 		setAlwaysOnTop(true);
 		setFocusableWindowState(false);
+		getRootPane().putClientProperty("apple.awt.draggableWindowBackground", Boolean.FALSE);
 		
 		panel = new JPanel();
 		if (direction == HORIZONTAL)
