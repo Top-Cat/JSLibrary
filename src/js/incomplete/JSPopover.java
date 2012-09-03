@@ -20,6 +20,10 @@ public class JSPopover extends JFrame {
 	public JSPopover() {
 		direction = TOP;
 		setLayout(null);
+		setUndecorated(true);
+		setBackground(new Color(0, 0, 0, 0));
+		setAlwaysOnTop(true);
+		setFocusableWindowState(false);
 		
 		panel = new JPanel();
 		panel.setBounds(10, 30, getWidth() - 20, getHeight() - 20);
@@ -30,6 +34,10 @@ public class JSPopover extends JFrame {
 	public JSPopover(int direction) {
 		setDirection(direction);
 		setLayout(null);
+		setUndecorated(true);
+		setBackground(new Color(0, 0, 0, 0));
+		setAlwaysOnTop(true);
+		setFocusableWindowState(false);
 		
 		panel = new JPanel();
 		if (direction == LEFT)
