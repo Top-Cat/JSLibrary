@@ -27,6 +27,19 @@ public class JSPopover extends JFrame {
 		add(panel);
 	}
 	
+	public JSPopover(int direction) {
+		setDirection(direction);
+		setLayout(null);
+		
+		panel = new JPanel();
+		if (direction == LEFT)
+			panel.setBounds(30, 10, getWidth() - 20, getHeight() - 20);
+		else
+			panel.setBounds(10, 30, getWidth() - 20, getHeight() - 20);
+		panel.setBackground(Color.WHITE);
+		add(panel);
+	}
+	
 	public void setStrokeColor(Color c) {
 		strokeColor = c;
 		repaint();
@@ -60,6 +73,10 @@ public class JSPopover extends JFrame {
 			g.fillRoundRect(0, 20, width - 1, height - 21, 20, 20);
 		}
 		
+		if (direction == LEFT)
+			panel.setBounds(30, 10, getWidth() - 20, getHeight() - 20);
+		else
+			panel.setBounds(10, 30, getWidth() - 20, getHeight() - 20);
 		super.paint(g);
 	}
 	
