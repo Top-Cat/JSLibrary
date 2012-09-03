@@ -135,10 +135,10 @@ public class JSPopover extends JFrame {
 			this.direction = direction;
 			if (this.direction == VERTICAL) {
 				setSize(getWidth() - 20, getHeight());
-				old.y += (getHeight() / 2) - 12;
+				old.y += (getHeight() / 2) - 10;
 			} else {
 				setSize(getWidth(), getHeight() - 20);
-				old.x += (getWidth() / 2) - 12;
+				old.x += (getWidth() / 2) - 10;
 			}
 			repaint();
 			setLocation(old);
