@@ -1,8 +1,10 @@
 package js.incomplete;
 
+import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class JSValidatedTextField extends JTextField implements FocusListener {
@@ -21,6 +23,7 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	private boolean auto;
 	private String error;
 	private String name;
+	private JSPopover popover;
 	
 	JSValidatedTextField() {
 		addFocusListener(this);
@@ -130,11 +133,27 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	}
 
 	public void focusGained(FocusEvent e) {
-
+		if (auto && popover != null && popover.isShowing())
+			popover.setVisible(false);
 	}
 
 	public void focusLost(FocusEvent e) {
-
+		if (auto) {
+			validate();
+			if (! passedValidation()) {
+				popover = new JSPopover(JSPopover.HORIZONTAL);
+				popover.setSize(225, 75);
+				popover.setStrokeColor(new Color(250, 150, 140));
+				JLabel label = new JLabel();
+				label.setVerticalAlignment(JLabel.CENTER);
+				label.setVerticalTextPosition(JLabel.CENTER);
+				label.setBounds(5, 5, 215, 45);
+				label.setText("<html>" + error + "</html>");
+				popover.add(label);
+				popover.setLocation(getLocationOnScreen().x + getWidth(), getLocationOnScreen().y + (getHeight() / 2));
+				popover.setVisible(true);
+			}
+		}
 	}
 	
 }
