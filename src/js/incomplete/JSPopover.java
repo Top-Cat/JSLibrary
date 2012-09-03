@@ -9,8 +9,12 @@ import javax.swing.JPanel;
 
 public class JSPopover extends JFrame {
 	
+	public static final int TOP = 0;
+	public static final int LEFT = 1;
+	
 	private Color strokeColor = Color.black;
 	private JPanel panel;
+	private int direction;
 	
 	public void paint(Graphics g) {				
 		g.setColor(strokeColor);
@@ -20,17 +24,30 @@ public class JSPopover extends JFrame {
 		int middleH = height / 2;
 		int middleW = width / 2;
 		
-		int[] xPoints = {0, 20, 20, 0};
-		int[] yPoints = {middleH, middleH - 20, middleH + 20, middleH};
-		int nPoints = xPoints.length;
-		
-		Polygon p = new Polygon(xPoints, yPoints, nPoints);
-		g.fillPolygon(p);
-		g.fillRoundRect(20, 0, width - 21, height - 1, 20, 20);
+		if (direction == LEFT) {
+			int[] xPoints = {0, 20, 20, 0};
+			int[] yPoints = {middleH, middleH - 20, middleH + 20, middleH};
+			int nPoints = xPoints.length;
+			Polygon p = new Polygon(xPoints, yPoints, nPoints);
+			g.fillPolygon(p);
+			g.fillRoundRect(20, 0, width - 21, height - 1, 20, 20);
+		} else {
+			int[] xPoints = {middleW, middleW + 20, middleW - 20, middleW};
+			int[] yPoints = {0, 20, 20, 0};
+			int nPoints = xPoints.length;
+			Polygon p = new Polygon(xPoints, yPoints, nPoints);
+			g.fillPolygon(p);
+			g.fillRoundRect(0, 20, width - 1, height - 21, 20, 20);
+		}
 		
 		panel.setBackground(Color.RED);
 		add(panel);
 		super.paint(g);
+	}
+	
+	public void setDirection(int direction) {
+		this.direction = direction;
+		repaint();
 	}
 
 }
