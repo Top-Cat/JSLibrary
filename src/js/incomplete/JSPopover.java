@@ -17,6 +17,16 @@ public class JSPopover extends JFrame {
 	private JPanel panel;
 	private int direction;
 	
+	public JSPopover() {
+		direction = TOP;
+		setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBounds(10, 30, getWidth() - 20, getHeight() - 20);
+		panel.setBackground(Color.WHITE);
+		add(panel);
+	}
+	
 	public void setStrokeColor(Color c) {
 		strokeColor = c;
 		repaint();
@@ -50,8 +60,6 @@ public class JSPopover extends JFrame {
 			g.fillRoundRect(0, 20, width - 1, height - 21, 20, 20);
 		}
 		
-		panel.setBackground(Color.RED);
-		add(panel);
 		super.paint(g);
 	}
 	
