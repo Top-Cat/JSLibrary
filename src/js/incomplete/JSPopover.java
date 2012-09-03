@@ -33,7 +33,7 @@ public class JSPopover extends JFrame {
 	}
 	
 	public JSPopover(int direction) {
-		setDirection(direction);
+		this.direction = direction;
 		setLayout(null);
 		setUndecorated(true);
 		setBackground(new Color(0, 0, 0, 0));
@@ -112,7 +112,6 @@ public class JSPopover extends JFrame {
 	}
 	
 	public void setSize(int width, int height) {
-		remove(panel);
 		if (direction == HORIZONTAL) {
 			panel.setBounds(30, 10, width - 40, height - 20);
 			super.setSize(width + 20, height);
@@ -120,12 +119,17 @@ public class JSPopover extends JFrame {
 			panel.setBounds(10, 30, getWidth() - 20, getHeight() - 40);
 			super.setSize(width, height + 20);
 		}
-		add(panel);
 	}
 	
 	public void setDirection(int direction) {
-		this.direction = direction;
-		repaint();
+		if (this.direction != direction) {
+			this.direction = direction;
+			if (this.direction == VERTICAL)
+				setSize(getWidth() - 20, getHeight());
+			else
+				setSize(getWidth(), getHeight() - 20);
+			repaint();
+		}
 	}
 
 }
