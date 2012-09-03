@@ -122,6 +122,13 @@ public class JSPopover extends JFrame {
 		}
 	}
 	
+	public void toggleDirection() {
+		if (direction == HORIZONTAL)
+			setDirection(VERTICAL);
+		else
+			setDirection(HORIZONTAL);
+	}
+	
 	public void setDirection(int direction) {
 		if (this.direction != direction) {
 			Point old = getLocationOnScreen();
