@@ -22,6 +22,10 @@ public class JSPopover extends JFrame {
 		repaint();
 	}
 	
+	public void setBackground(Color c) {
+		panel.setBackground(c);
+	}
+	
 	public void paint(Graphics g) {				
 		g.setColor(strokeColor);
 		
