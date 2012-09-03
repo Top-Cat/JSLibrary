@@ -10,15 +10,15 @@ import javax.swing.JPanel;
 
 public class JSPopover extends JFrame {
 	
-	public static final int TOP = 0;
-	public static final int LEFT = 1;
+	public static final int VERTICAL = 0;
+	public static final int HORIZONTAL = 1;
 	
 	private Color strokeColor = Color.black;
 	private JPanel panel;
 	private int direction;
 	
 	public JSPopover() {
-		direction = TOP;
+		direction = VERTICAL;
 		setLayout(null);
 		setUndecorated(true);
 		setBackground(new Color(0, 0, 0, 0));
@@ -41,7 +41,7 @@ public class JSPopover extends JFrame {
 		setFocusableWindowState(false);
 		
 		panel = new JPanel();
-		if (direction == LEFT)
+		if (direction == HORIZONTAL)
 			panel.setBounds(30, 10, getWidth() - 40, getHeight() - 20);
 		else
 			panel.setBounds(10, 30, getWidth() - 20, getHeight() - 40);
@@ -68,7 +68,7 @@ public class JSPopover extends JFrame {
 		int middleH = height / 2;
 		int middleW = width / 2;
 		
-		if (direction == LEFT) {
+		if (direction == HORIZONTAL) {
 			int[] xPoints = {0, 20, 20, 0};
 			int[] yPoints = {middleH, middleH - 20, middleH + 20, middleH};
 			int nPoints = xPoints.length;
@@ -84,7 +84,7 @@ public class JSPopover extends JFrame {
 			g.fillRoundRect(0, 20, width - 1, height - 21, 20, 20);
 		}
 
-		if (direction == LEFT)
+		if (direction == HORIZONTAL)
 			panel.setBounds(30, 10, getWidth() - 40, getHeight() - 20);
 		else
 			panel.setBounds(10, 30, getWidth() - 20, getHeight() - 40);
@@ -97,7 +97,7 @@ public class JSPopover extends JFrame {
 		int middleH = height / 2;
 		int middleW = width / 2;
 		
-		if (direction == LEFT)
+		if (direction == HORIZONTAL)
 			super.setLocation(x, y - middleH);
 		else
 			super.setLocation(x - middleW, y);
@@ -113,7 +113,7 @@ public class JSPopover extends JFrame {
 	
 	public void setSize(int width, int height) {
 		remove(panel);
-		if (direction == LEFT) {
+		if (direction == HORIZONTAL) {
 			panel.setBounds(30, 10, width - 40, height - 20);
 			super.setSize(width + 20, height);
 		} else {
