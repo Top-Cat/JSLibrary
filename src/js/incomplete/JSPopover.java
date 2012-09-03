@@ -17,6 +17,11 @@ public class JSPopover extends JFrame {
 	private JPanel panel;
 	private int direction;
 	
+	public void setStrokeColor(Color c) {
+		strokeColor = c;
+		repaint();
+	}
+	
 	public void paint(Graphics g) {				
 		g.setColor(strokeColor);
 		
