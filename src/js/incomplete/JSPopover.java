@@ -1,6 +1,7 @@
 package js.incomplete;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Polygon;
 
@@ -55,6 +56,14 @@ public class JSPopover extends JFrame {
 			super.setLocation(x, y - middleH);
 		else
 			super.setLocation(x - middleW, y);
+	}
+	
+	public Component add(Component comp) {
+		if (comp != panel) {
+			return panel.add(comp);
+		} else {
+			return super.add(comp);
+		}
 	}
 	
 	public void setSize(int width, int height) {
