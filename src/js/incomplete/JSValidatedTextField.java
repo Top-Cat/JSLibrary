@@ -143,7 +143,7 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 			if (! passedValidation()) {
 				popover = new JSPopover(JSPopover.HORIZONTAL);
 				popover.setSize(225, 75);
-				popover.setStrokeColor(new Color(250, 150, 140));
+				popover.setStrokeColor(new Color(255, 55, 55));
 				JLabel label = new JLabel();
 				label.setVerticalAlignment(JLabel.CENTER);
 				label.setVerticalTextPosition(JLabel.CENTER);
