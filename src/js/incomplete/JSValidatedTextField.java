@@ -55,6 +55,41 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 		return field;
 	}
 	
+	public void validate() {
+		String text = getText();
+		switch (type) {
+		case PRESENCE_CHECK:
+			if (text.length() == 0)
+				error = " is required.";
+			break;
+		case LENGTH_CHECK:
+			if (text.length() < minLength)
+				error = " must contain at least " + minLength + " characters.";
+			else if (text.length() > maxLength)
+				error = " must contain " + maxLength + " characters or less.";
+			break;
+		case RANGE_CHECK:
+			try {
+				double number = Double.parseDouble(text);
+				if (number < minValue)
+					error = " must be at least " + minValue + ".";
+				else if (number > maxValue)
+					error = " must be " + maxValue + " or less.";
+			} catch (NumberFormatException e) {
+				error = " must contain a number.";
+			}
+			break;
+		case FORMAT_CHECK:
+			if (! text.matches(pattern))
+				error = " is not in the correct format.";
+			break;
+		}
+		if (name.length() > 0)
+			error = name + error;
+		else
+			error = "This field" + error;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
