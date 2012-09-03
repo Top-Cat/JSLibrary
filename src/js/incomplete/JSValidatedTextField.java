@@ -84,7 +84,7 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 				error = " is not in the correct format.";
 			break;
 		}
-		if (name.length() > 0)
+		if (name != null && name.length() > 0)
 			error = name + error;
 		else
 			error = "This field" + error;
