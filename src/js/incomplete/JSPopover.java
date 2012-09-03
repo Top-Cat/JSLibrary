@@ -3,6 +3,7 @@ package js.incomplete;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Polygon;
 
 import javax.swing.JFrame;
@@ -123,12 +124,17 @@ public class JSPopover extends JFrame {
 	
 	public void setDirection(int direction) {
 		if (this.direction != direction) {
+			Point old = getLocationOnScreen();
 			this.direction = direction;
-			if (this.direction == VERTICAL)
+			if (this.direction == VERTICAL) {
 				setSize(getWidth() - 20, getHeight());
-			else
+				old.y += (getHeight() / 2) - 10;
+			} else {
 				setSize(getWidth(), getHeight() - 20);
+				old.x += (getWidth() / 2) - 10;
+			}
 			repaint();
+			setLocation(old);
 		}
 	}
 
