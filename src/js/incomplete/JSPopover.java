@@ -60,6 +60,7 @@ public class JSPopover extends JFrame {
 	}
 	
 	public void paint(Graphics g) {
+		g.clearRect(0, 0, getWidth(), getHeight());
 		g.setColor(strokeColor);
 		
 		int width = getWidth();
