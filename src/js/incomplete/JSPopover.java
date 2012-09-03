@@ -15,18 +15,18 @@ public class JSPopover extends JFrame {
 	public void paint(Graphics g) {				
 		g.setColor(strokeColor);
 		
-		int w = getWidth();
-		int h = getHeight();
-		int mH = h / 2;
-		int mW = w / 2;
+		int width = getWidth();
+		int height = getHeight();
+		int middleH = height / 2;
+		int middleW = width / 2;
 		
 		int[] xPoints = {0, 20, 20, 0};
-		int[] yPoints = {mH, mH - 20, mH + 20, mH};
+		int[] yPoints = {middleH, middleH - 20, middleH + 20, middleH};
 		int nPoints = xPoints.length;
 		
 		Polygon p = new Polygon(xPoints, yPoints, nPoints);
 		g.fillPolygon(p);
-		g.fillRoundRect(20, 0, w - 21, h - 1, 20, 20);
+		g.fillRoundRect(20, 0, width - 21, height - 1, 20, 20);
 		
 		panel.setBackground(Color.RED);
 		add(panel);
