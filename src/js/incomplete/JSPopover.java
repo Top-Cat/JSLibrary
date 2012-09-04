@@ -9,6 +9,11 @@ import java.awt.Polygon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * JSPopover is designed to recreate the popover UI element from the iPad interface. It consists of
+ * an always-on-top frame which has an arrow on one side, usually used to point to the component
+ * that caused the popover to display.
+ */
 public class JSPopover extends JFrame {
 	
 	public static final int VERTICAL = 0;
@@ -18,6 +23,9 @@ public class JSPopover extends JFrame {
 	private JPanel panel;
 	private int direction;
 	
+	/**
+	 * Creates a new popover in the vertical direction (arrow pointing up).
+	 */
 	public JSPopover() {
 		direction = VERTICAL;
 		setLayout(null);
@@ -34,6 +42,12 @@ public class JSPopover extends JFrame {
 		add(panel);
 	}
 	
+	/**
+	 * Creates a new popover in the specified direction, either <code>JSPopover.VERTICAL</code> for
+	 * an upward-pointing arrow, or <code>JSPopover.HORIZONTAL</code> for a left-pointing arrow.
+	 * 
+	 * @param direction an integer representing the direction for the arrow to point.
+	 */
 	public JSPopover(int direction) {
 		this.direction = direction;
 		setLayout(null);
@@ -53,11 +67,21 @@ public class JSPopover extends JFrame {
 		add(panel);
 	}
 	
+	/**
+	 * Sets the color of the arrow and outline for the popover.
+	 * 
+	 * @param c the color to use for the popover's outline.
+	 */
 	public void setStrokeColor(Color c) {
 		strokeColor = c;
 		repaint();
 	}
 	
+	/**
+	 * Sets the color for the background of the usable portion of the popover.
+	 * 
+	 * @param c the color to use for the popover's background.
+	 */
 	public void setContentBackground(Color c) {
 		panel.setBackground(c);
 	}
@@ -124,6 +148,11 @@ public class JSPopover extends JFrame {
 		}
 	}
 	
+	/**
+	 * Changes the arrow to point in the other direction to its current one, i.e.
+	 * if the arrow is currently pointing up it will change to pointing left and
+	 * vice versa.
+	 */
 	public void toggleDirection() {
 		if (direction == HORIZONTAL)
 			setDirection(VERTICAL);
@@ -131,6 +160,12 @@ public class JSPopover extends JFrame {
 			setDirection(HORIZONTAL);
 	}
 	
+	/**
+	 * Sets the direction for the arrow to point in, either <code>JSPopover.VERTICAL</code> for
+	 * an upward-pointing arrow, or <code>JSPopover.HORIZONTAL</code> for a left-pointing arrow.
+	 * 
+	 * @param direction an integer representing the direction for the arrow to point.
+	 */
 	public void setDirection(int direction) {
 		if (this.direction != direction) {
 			Point old = getLocationOnScreen();
