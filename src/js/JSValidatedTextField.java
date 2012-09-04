@@ -1,4 +1,4 @@
-package js.incomplete;
+package js;
 
 import java.awt.Color;
 import java.awt.event.FocusEvent;
@@ -6,6 +6,8 @@ import java.awt.event.FocusListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import js.incomplete.JSPopover;
 
 public class JSValidatedTextField extends JTextField implements FocusListener {
 
