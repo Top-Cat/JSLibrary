@@ -25,7 +25,7 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	private String name;
 	private JSPopover popover;
 	
-	JSValidatedTextField() {
+	private JSValidatedTextField() {
 		addFocusListener(this);
 	}
 	
