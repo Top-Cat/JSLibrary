@@ -8,6 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 
+/**
+ * JSValidatedTextField is a JTextField which can perform validation on its text, one of
+ * presence, format, range or length checks. It can perform this validation on command
+ * or automatically when focus is lost.
+ */
 public class JSValidatedTextField extends JTextField implements FocusListener {
 
 	private static final int PRESENCE_CHECK = 0;
