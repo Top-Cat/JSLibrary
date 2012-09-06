@@ -198,6 +198,10 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 		popover.setVisible(true);
 	}
 	
+	public void hideErrorMessage() {
+		popover.setVisible(false);
+	}
+	
 	/**
 	 * Sets whether automatic validation is enabled. If it is enabled, the field
 	 * will perform its validation automatically when focus is lost and display a
