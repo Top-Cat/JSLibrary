@@ -195,6 +195,17 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	}
 	
 	/**
+	 * Sets the error message. Useful for displaying information before validating (like how to pass
+	 * the validation).
+	 * 
+	 * @param message the String to set the error message to.
+	 */
+	public void setErrorMessage(String message) {
+		error = message;
+		errorLabel.setText("<html>" + error + "</html>");
+	}
+	
+	/**
 	 * Displays a popover containing the error message from the last call to <code>validate()</code>.
 	 * 
 	 * @see js.JSPopover
