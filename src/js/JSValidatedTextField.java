@@ -153,6 +153,7 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 				error = "This field" + error;
 		} else
 			error = "";
+		errorLabel.setText("<html>" + error + "</html>");
 	}
 	
 	/**
