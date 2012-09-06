@@ -194,15 +194,29 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 		return error;
 	}
 	
+	/**
+	 * Displays a popover containing the error message from the last call to <code>validate()</code>.
+	 * 
+	 * @see js.JSPopover
+	 */
 	public void showErrorMessage() {
 		popover.setLocation(getLocationOnScreen().x + getWidth(), getLocationOnScreen().y + (getHeight() / 2));
 		popover.setVisible(true);
 	}
 	
+	/**
+	 * Hides the error message popover.
+	 */
 	public void hideErrorMessage() {
 		popover.setVisible(false);
 	}
 	
+	/**
+	 * Gets the error message popover for customisation purposes.
+	 * 
+	 * @return the error message popover (a <code>JSPopover</code>).
+	 * @see js.JSPopover
+	 */
 	public JSPopover getPopover() {
 		return popover;
 	}
