@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
  * 
  * @author Josh
  * @version 1.0
- *
+ * @deprecated This is too much to do what with having to create two images for every icon, and I don't believe anyone uses it anyway.
  */
 public class JSRoundButton extends JButton implements MouseListener {
 
