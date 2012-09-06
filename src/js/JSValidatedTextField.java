@@ -30,9 +30,18 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	private String error;
 	private String name;
 	private JSPopover popover;
+	private JLabel errorLabel;
 	
 	private JSValidatedTextField() {
 		addFocusListener(this);
+		popover = new JSPopover(JSPopover.HORIZONTAL);
+		popover.setSize(225, 75);
+		popover.setStrokeColor(new Color(255, 55, 55));
+		errorLabel = new JLabel();
+		errorLabel.setVerticalAlignment(JLabel.CENTER);
+		errorLabel.setVerticalTextPosition(JLabel.CENTER);
+		errorLabel.setBounds(5, 5, 205, 45);
+		popover.add(errorLabel);
 	}
 	
 	/**
@@ -185,15 +194,7 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	}
 	
 	public void showErrorMessage() {
-		popover = new JSPopover(JSPopover.HORIZONTAL);
-		popover.setSize(225, 75);
-		popover.setStrokeColor(new Color(255, 55, 55));
-		JLabel label = new JLabel();
-		label.setVerticalAlignment(JLabel.CENTER);
-		label.setVerticalTextPosition(JLabel.CENTER);
-		label.setBounds(5, 5, 205, 45);
-		label.setText("<html>" + error + "</html>");
-		popover.add(label);
+		errorLabel.setText("<html>" + error + "</html>");
 		popover.setLocation(getLocationOnScreen().x + getWidth(), getLocationOnScreen().y + (getHeight() / 2));
 		popover.setVisible(true);
 	}
