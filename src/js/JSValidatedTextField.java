@@ -195,7 +195,6 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 	}
 	
 	public void showErrorMessage() {
-		errorLabel.setText("<html>" + error + "</html>");
 		popover.setLocation(getLocationOnScreen().x + getWidth(), getLocationOnScreen().y + (getHeight() / 2));
 		popover.setVisible(true);
 	}
