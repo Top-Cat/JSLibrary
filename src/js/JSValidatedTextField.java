@@ -184,6 +184,20 @@ public class JSValidatedTextField extends JTextField implements FocusListener {
 		return error;
 	}
 	
+	public void showErrorMessage() {
+		popover = new JSPopover(JSPopover.HORIZONTAL);
+		popover.setSize(225, 75);
+		popover.setStrokeColor(new Color(255, 55, 55));
+		JLabel label = new JLabel();
+		label.setVerticalAlignment(JLabel.CENTER);
+		label.setVerticalTextPosition(JLabel.CENTER);
+		label.setBounds(5, 5, 205, 45);
+		label.setText("<html>" + error + "</html>");
+		popover.add(label);
+		popover.setLocation(getLocationOnScreen().x + getWidth(), getLocationOnScreen().y + (getHeight() / 2));
+		popover.setVisible(true);
+	}
+	
 	/**
 	 * Sets whether automatic validation is enabled. If it is enabled, the field
 	 * will perform its validation automatically when focus is lost and display a
